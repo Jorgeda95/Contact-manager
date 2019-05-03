@@ -1,5 +1,5 @@
 # Contact-manager
-Proyecto Final de Programación
-David Corzo
-Jorge Pineda
+Proyecto Final de Programación:
+David Corzo,
+Jorge Pineda,
 Steven Wilson
