@@ -47,3 +47,7 @@ def removeContact(nombre,apellido):
 
 removeContact(nombre,apellido)
 print(diccionarioMaestro)
+
+
+
+#fase 6 
