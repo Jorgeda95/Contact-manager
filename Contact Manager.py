@@ -151,20 +151,22 @@ def ContactID(nombre,apellido):
 
 
 def callContact():
+        print("\nPara realizar la llamada debe ingresar el ID del usuario\n si desea cancelar la llamada presiones Control-C\n")
+        #función para realizar la llamada a un contacto ingresando el ID
         try:
-                nombre = input("Ingrese el contact ID: → ")
+                nombre = input("Ingrese el contact ID: ")
+                #hay que modificar porque se ingresa el ID con el paso anterior
                 print("Llamando a: {}".format(nombre))
-                #print=input("Si desea cancelar la llamada presione la tecla C:  ")
-                for restantes in range(60, 0, -1):
+                #se utilizo print porque solo es string
+                for restantes in range(60, 0, -1):  #el for hace que recorra desde 60 a 0 bajando -1 
+                        #se utiliza el sys.stdout para imprimir string e int juntos sin necesidad de casterear
                         sys.stdout.write("\r")
-                        #sys.stdout.write("Llamando a: {}".format(nombre))
                         sys.stdout.write("{:2d} Segundos restantes".format(restantes)) 
                         sys.stdout.flush()
                         time.sleep(1)
                 sys.stdout.write("\rSe realizo la llamada con éxito!!            \n")
-        except KeyboardInterrupt:
+        except KeyboardInterrupt: #se genera el error e imprime el resultado
                 print("\nla llamada se cancelo")
-
 
 
 def msgContacts():
