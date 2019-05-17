@@ -1,49 +1,47 @@
-# diccionarioMaestro = {}
-# def addContacts(nombre, apellido, telefono):
-#     key=str(nombre) + str(apellido)
-#     nestedDictionary = {'nombre':nombre,'apellido':apellido,'telefono':telefono}
-#     diccionarioMaestro[key] =[nestedDictionary]
-#     print(diccionarioMaestro)
 
-# nombre = input('NAME: ')
-# apellido = input('APELLIDO')
-# telefono = input(str('telefono'))
-
-# addContacts(nombre,apellido,telefono)
 
 diccionarioMaestro = {
     'stevenwilson': {'nombre': "Steven",'apellido': "Wilson", 'telefono': "45656765"},
-    'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}
+    'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'},
+    'jorgepineda':{'nombre': 'Jorge', 'apellido': 'Pineda', 'telefono': '23456895'},'favorites':{'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}}
 }
+favorites = {'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}}
+favoriteContactDelete = input('¿Qué contacto desea eliminar de favoritos? (contactid) →')
+def removeFromFavorites(favoriteContactdelete,favorites):
+    listSplit = favoriteContactdelete.split(',')
+    verifiedSplit = []
+    invalidSplit = []
+    iteration1 = 0
+    for items in listSplit:
+        if listSplit[iteration1] in diccionarioMaestro:
+            verifiedSplit.append(listSplit[iteration1])
+        else:
+            invalidSplit.append(listSplit[iteration1])
+        
+        iteration1 = iteration1 + 1
+
+    print(verifiedSplit)
+    
+    if len(invalidSplit) != 0:
+        print('Contacto(s) → {} ← parece(n) no existir en la lista de contactos'.format(', '.join(invalidSplit)))
+        print("Porfavor asegúrese de haber escrito el contacto correctamente y que el contacto si exista en el directorio.")
+
+    elif len(invalidSplit) == 0:
+        iteration2 = 0
+        for n in verifiedSplit:
+            del diccionarioMaestro['favorites'][verifiedSplit[iteration2]]
+            del favorites[verifiedSplit[iteration2]]
+            iteration2 = iteration2 + 1
 
 
+removeFromFavorites(favoriteContactDelete,favorites)
 
-# remove = input(str("Ingrese el contacto a eliminar: → ")) davidcorzo
-# remove = remove.lower
-
-
-def produceContactID(nombre,apellido):
-    nombre = nombre.lower()
-    apellido = apellido.lower()
-    key=str(nombre) + str(apellido)
-    return key
-
-nombre = input('NOMBRE del contacto que desea borrar: ')
-apellido = input('APELLIDO del contacto que desea borrar: ')
-
-
-def removeContact(nombre,apellido):
-    key = produceContactID(nombre,apellido)
-    confirmation = input("Estás seguro que quieres borrar el contacto → {} {} ← con el número de → telefono ← {} ← (Ingrese si o no) → ".format(diccionarioMaestro[key]['nombre'],diccionarioMaestro[key]['apellido'],diccionarioMaestro[key]['telefono']))
-    if confirmation == "si":
-        try:
-            del diccionarioMaestro[key]
-        except TypeError:
-            print("El contacto ingresado está mal escrito o no existe en la lista de contactos")
-        except KeyError:
-            print("El contacto ingresado está mal escrito o no existe en la lista de contactos")
-    else: 
-        print("No se eliminó el contacto") 
-
-removeContact(nombre,apellido)
 print(diccionarioMaestro)
+print(favorites)
+
+    
+
+# nombre = input('n')
+# apellido = input('a')
+# telefono = input('t')
+# addContacts(nombre,apellido,telefono)
