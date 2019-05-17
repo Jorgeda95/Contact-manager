@@ -1,3 +1,22 @@
+import requests
+
+UrlConsulta="http://demo7862839.mockable.io/contacts?gid=100"
+
+UrlGet="http://demo7862839.mockable.io/contacts?gid=100"
+
+#Metodo Get
+gid = input("Ingrese el gid ")
+
+params = {'gid':gid}
+
+r = requests.get(UrlConsulta1)
+print(r.json())
+
+
+
+
+
+
 '''
 # diccionarioMaestro = {}
 # def addContacts(nombre, apellido, telefono):
@@ -15,14 +34,11 @@
 diccionarioMaestro = {
     'stevenwilson': {'nombre': "Steven",'apellido': "Wilson", 'telefono': "45656765"},
     'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}
-}
-
-
 
 # remove = input(str("Ingrese el contacto a eliminar: → ")) davidcorzo
 # remove = remove.lower
 
-
+}
 def produceContactID(nombre,apellido):
     nombre = nombre.lower()
     apellido = apellido.lower()
@@ -54,5 +70,7 @@ print(diccionarioMaestro)
 #fase 6 
 esto es una prueba para las branch
 '''
+
+
 
 
