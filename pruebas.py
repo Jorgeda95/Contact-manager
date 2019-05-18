@@ -1,16 +1,63 @@
 
 import requests
+import json
 
-#UrlPost="https://reqres.in/api/users"
-#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
-UrlPost=input("Ingrese la url con la desea utilizar el metodo POST:\n  ")
-#Metodo 2 Si desea ingresar la url manualmente    
-payload={'FirstName': 'Michael', 'LastName': 'Kirk', 'phone': '123123'}
+#POST
+def Post(string):
+    urlPost="https://reqres.in/api/users"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
-r=requests.post(UrlPost, json=payload)
-print(r)
-print(r.text)
+    #urlPost=input("Ingrese la url con la desea utilizar el metodo POST:\n  ")#Metodo 2 Si desea que la url se ingrese
+
+    params = {'gid':gid}
+    #Se ingresa el gid que es el valor
+
+    payload={'FirstName': 'Michael', 'LastName': 'Kirk', 'phone': '123123'}
+    #la información (data) para subir
+
+    postResponse=requests.post(urlPost, params = params, json=payload)
+    dataPost=postResponse.json()
+    print(postResponse)
+    #imprime el status code
+    print(dataPost)
+    #imprime la data 
+
+def Get(string):
+    urlGet="https://reqres.in/api/users"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
+
+    #urlGet=input("Ingrese la url con la desea utilizar el metodo GET:\n  ")#Metodo 2 Si desea que la url se ingrese
+
+    params = {'gid':gid}
+    #Se ingresa el gid que es el valor
+
+    getResponse=requests.get(urlGet, params = params)
+    dataGet=getResponse.json()
+    print(getResponse)
+    #imprime el status code
+    print(dataGet)
+    #imprime la data 
+
+
+def Menu():
+    print("Menu Fase 6:")
+    print("Opción#1 POST")
+    print("Opción#2 GET\n")
+
+def Opciones(OpcionMenu=0):
+	Opcion = int(input("Escoja una opción:\n"))
+	return Opcion
+MenuPrincipal = Menu()
+
+OpcionMenu = Opciones()
+#POST
+if (OpcionMenu == 1):
+        gid = input(str("Ingrese el gid para POST:\n"))
+        Post(gid)
+#GET
+if (OpcionMenu ==2):
+        gid = input(str("Ingresa el gid para GET\n"))
+        Get(gid)
+
 
 
 '''
