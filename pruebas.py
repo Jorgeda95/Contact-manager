@@ -24,7 +24,7 @@ data_get = get_response.json()
 
 r = requests.get(url)
 print(r.json())
-
+#escribe 
 
 '''
 
