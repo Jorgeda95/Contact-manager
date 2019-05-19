@@ -5,9 +5,8 @@ import sys, time
 import os
 import csv
 
-diccionarioMaestro = {}
-filename = "initialContacts.txt"
-activeFile= os.path.exists(filename)
+
+
 
 def Esthetics():
         print('__________________________________________________________________________________________________________________________________________________________________________________________________________________')
@@ -68,12 +67,29 @@ estaran en el archivo de una manera desordenada."""
 def readFile(filename):
     with open(filename) as archivo:
         print("el archivo a leer es {}".format(filename))
-        print()
-        return archivo.readlines()
+        reader = archivo.readlines()
+        stringedList = "".join(reader)
+        #
+        listToIterate = stringedList.splitlines()
+        # print(listToIterate)
+        combinedList = []
+        iteration = 0
+        for n in listToIterate:
+            if listToIterate[iteration] != '':
+                combinedList.append(listToIterate[iteration])
+            iteration = iteration + 1
+
+        finalList = []
+        for line in combinedList:
+            separated = line.split(",")
+            finalList.append(separated)
+        return finalList
+
+# print(readFile(filename))
 
 def addContactsFromTxt(filename):
     lines=readFile(filename)
-    lines.strip("-")
+    # lines.strip("-")
     for line in lines:
         words = line.split(",")
         newContactID = words[0]+words[1]
@@ -254,27 +270,14 @@ filename = 'InitialContacts.txt'
 diccionarioMaestro = {}
 
 def loadFromFile(filename,diccionarioMaestro):
-    lines=readFile(filename)
-    for line in lines:
-        words = line.split(",")
-        for word in words:
-            if word != "\n":
-                word=word.strip()
-                letter=word[0]
-                print(letter)
-                
-                # iterationName = 0 
-                # iterationLast = 1
-                # iterationTelf = 2
-                # # for n in word:
-                # # if letter in diccionarioMaestro:
-                # #     diccionarioMaestro[letter].append(word)
-                # # else:
-                # #     diccionarioMaestro[letter]=[]
-                # #     diccionarioMaestro[letter].append(word)
+    words = readFile(filename)
+    iteration = 0
+    for line in words:
+        # for words in line:
+        key = produceContactID(words[iteration][0], words[iteration][1])
+        diccionarioMaestro.update( {key : {"nombre": words[iteration][0], "apellido": words[iteration][1], "telefono": words[iteration][2]}})
+        iteration = iteration + 1
     return diccionarioMaestro
-
-    
     
 print(loadFromFile(filename,diccionarioMaestro))
 

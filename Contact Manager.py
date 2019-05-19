@@ -4,14 +4,11 @@ from funcionesContactManager import *
 ##########################################################################################################################################################
 #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAI
 ##########################################################################################################################################################
-
-# diccionarioMaestro = {
-#     'stevenwilson': {'nombre': "Steven",'apellido': "Wilson", 'telefono': "45656765"},
-#     'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'},
-#     'jorgepineda':{'nombre': 'Jorge', 'apellido': 'Pineda', 'telefono': '23456895'},'favorites':{'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}}
-# }
-# favorites = {'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}}
-
+#beg de variables globales
+diccionarioMaestro = {}
+favorites = {}
+activeFile= os.path.exists(filename)
+#fin de vairables globales
 
 def main():
         print('''
@@ -20,14 +17,21 @@ Los métodos de importación de datos son: →
 → Por medio de un link a un sitio web .json presione "2" 
 ''')
         importacionDeDatos = input('Porfavor seleccione el método de importación de datos: → ')
+        filename = "initialContacts.txt" #input('Ingrese el nombre de sus archivos: → ') 
         #Fase 4 preguntar directorio
         if importacionDeDatos == '1':
-                pass
+                try:
+                        if activeFile == True:
+                                loadFromFile(filename, diccionarioMaestro)
+                        
+                except:
+                        print("El archivo elegido no está en el directorio")
+
         if importacionDeDatos == '2':
                 pass
 
         #Fase 5 menú
-        impresionDeMenu =  input('¿Desea imprimir el menu de opciones? ("si","no") →')
+        impresionDeMenu =  input('¿Desea imprimir el menú de opciones? ("si","no") →')
         if impresionDeMenu == 'si':
                 print('''
 1. Para agregar contacto presione “1”
@@ -72,7 +76,7 @@ Los métodos de importación de datos son: →
                 msgContacts(mensaje,contactsToSendTo)
 
         elif userChoice == '6':
-                favorites = {}
+                
                 favoriteContactAddition = input('¿Qué contacto desea agregar a favoritos? (contactid) →')
                 addFavoriteList(favoriteContactAddition,favorites)
 
