@@ -1,47 +1,45 @@
+""" Fase 4:
+Implemente un metodo que se llame loadFromFile(externalFile), que reciba el nombre de un
+archivo del cual se leerán los contactos, su método debe ser failsafe, es decir si el archivo no
+existe no ejecutar nada y devolver un “error”
+El programa (CLI) debe pedir el full path del archivo “~/Downloads/contacts.txt” y dentro del archivo el contenido debera lucir asi:
+
+Juan,Diaz,123456
+Jose,Miranda,1378978
+Gabriela,Estrada,798456
+
+Nota: ya tiene una funcion que hace algo similar verdad? (FASE 1), el archivo podria tener
+cualquier extension: .txt, .csv, .lists, .contacts, solo asegurese de leer texto y que el contenido
+del archivo sea como fue detallado, vea como ejemplo http://demo7862839.mockable.io/example.contacts
+"""
+# import sys,os
+# import csv
 
 
-diccionarioMaestro = {
-    'stevenwilson': {'nombre': "Steven",'apellido': "Wilson", 'telefono': "45656765"},
-    'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'},
-    'jorgepineda':{'nombre': 'Jorge', 'apellido': 'Pineda', 'telefono': '23456895'},'favorites':{'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}}
-}
-favorites = {'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}}
-favoriteContactDelete = input('¿Qué contacto desea eliminar de favoritos? (contactid) →')
-def removeFromFavorites(favoriteContactdelete,favorites):
-    listSplit = favoriteContactdelete.split(',')
-    verifiedSplit = []
-    invalidSplit = []
-    iteration1 = 0
-    for items in listSplit:
-        if listSplit[iteration1] in diccionarioMaestro:
-            verifiedSplit.append(listSplit[iteration1])
-        else:
-            invalidSplit.append(listSplit[iteration1])
-        
-        iteration1 = iteration1 + 1
+# filename = input('Ingrese el nombre del archivo: → ')
 
-    print(verifiedSplit)
-    
-    if len(invalidSplit) != 0:
-        print('Contacto(s) → {} ← parece(n) no existir en la lista de contactos'.format(', '.join(invalidSplit)))
-        print("Porfavor asegúrese de haber escrito el contacto correctamente y que el contacto si exista en el directorio.")
-
-    elif len(invalidSplit) == 0:
-        iteration2 = 0
-        for n in verifiedSplit:
-            del diccionarioMaestro['favorites'][verifiedSplit[iteration2]]
-            del favorites[verifiedSplit[iteration2]]
-            iteration2 = iteration2 + 1
-
-
-removeFromFavorites(favoriteContactDelete,favorites)
-
-print(diccionarioMaestro)
-print(favorites)
-
+# def loadFromFile(externalFile):
     
 
-# nombre = input('n')
-# apellido = input('a')
-# telefono = input('t')
-# addContacts(nombre,apellido,telefono)
+#     data = []
+#     file = open(filename, "r")
+#     for line in file:
+#         data.append(line)
+
+
+
+#     data = ''.join(data)
+#     data = data.split(',')
+
+
+#     print(data)
+
+# loadFromFile(filename)
+
+# lst = ["aaaa8","bb8","ccc8","dddddd8"]
+# print([s.strip('8') for s in lst]) # remove the 8 from the string borders
+# print([s.replace('8', '') for s in lst]) # remove all the 8s 
+
+import uuid
+
+print(hash(str(uuid.uuid1())) % 1000)

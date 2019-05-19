@@ -3,6 +3,7 @@ import colorama
 import sys, traceback
 import sys, time
 import os
+import csv
 
 diccionarioMaestro = {}
 filename = "initialContacts.txt"
@@ -215,7 +216,7 @@ def removeFromFavorites(favoriteContactdelete,favorites):
 
 """ Fase 4:
 Implemente un metodo que se llame loadFromFile(externalFile), que reciba el nombre de un
-archivo del cual se leeran los contactos, su metodo debe ser failsafe, es decir si el archivo no
+archivo del cual se leerán los contactos, su método debe ser failsafe, es decir si el archivo no
 existe no ejecutar nada y devolver un “error”
 El programa (CLI) debe pedir el full path del archivo “~/Downloads/contacts.txt” y dentro del archivo el contenido debera lucir asi:
 
@@ -225,10 +226,28 @@ Gabriela,Estrada,798456
 
 Nota: ya tiene una funcion que hace algo similar verdad? (FASE 1), el archivo podria tener
 cualquier extension: .txt, .csv, .lists, .contacts, solo asegurese de leer texto y que el contenido
-del archivo sera como fue detallado, vea como ejemplo http://demo7862839.mockable.io/example.contacts
+del archivo sea como fue detallado, vea como ejemplo http://demo7862839.mockable.io/example.contacts
 """
+
+
+
+filename = 'InitialContacts.txt'
+#input('Ingrese el nombre del archivo: → ')
+
 def loadFromFile(externalFile):
-        pass
+    
+
+    data = []
+    file = open(filename, "r")
+    for line in file:
+        data.append(line)
+
+    data = ''.join(data)
+    data = data.split(',')
+
+    
+    
+loadFromFile(filename)
 
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -5,7 +5,27 @@ import funcionesContactManager
 #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAI
 ##########################################################################################################################################################
 
+# diccionarioMaestro = {
+#     'stevenwilson': {'nombre': "Steven",'apellido': "Wilson", 'telefono': "45656765"},
+#     'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'},
+#     'jorgepineda':{'nombre': 'Jorge', 'apellido': 'Pineda', 'telefono': '23456895'},'favorites':{'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}}
+# }
+# favorites = {'davidcorzo': {'nombre': 'David', 'apellido': 'Corzo', 'telefono': '30177050'}}
+
+
 def main():
+        print('''
+Los métodos de importación de datos son: → 
+→ Por medio de un archivo que existe localmente presione "1"
+→ Por medio de un link a un sitio web .json presione "2" 
+''')
+        importacionDeDatos = input('Porfavor seleccione el método de importación de datos: → ')
+        #Fase 4 preguntar directorio
+        if importacionDeDatos == '1':
+                pass
+        if importacionDeDatos == '2':
+                pass
+
         #Fase 5 menú
         impresionDeMenu =  input('¿Desea imprimir el menu de opciones? ("si","no") →')
         if impresionDeMenu == 'si':
@@ -57,8 +77,8 @@ def main():
                 funcionesContactManager.addFavoriteList(favoriteContactAddition,favorites)
 
         elif userChoice == '7':
-                favoriteContactDelete = input('¿Qué contacto(s) desea eliminar de favoritos? (contactid) →')
-                funcionesContactManager.favoriteContactDelete(favoriteContactDelete,favorites)
+                favoriteContactDelete = input('¿Qué contacto desea eliminar de favoritos? (contactid) →')
+                funcionesContactManager.removeFromFavorites(favoriteContactDelete,favorites)
 
         elif userChoice == '8':
                 pass
