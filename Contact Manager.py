@@ -171,7 +171,7 @@ def main():
                                 #Tenemos que hacer que si da error vuelva a preguntar el método de exportacion
                         
         print("|------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
-        print('|------------------------------------ Final Project - Coding Course - UFM - Credits: David Corzo, Steven Wilson & Jorge Pineda ------------------------------------|')
+        print('|------------------------------------ Final Project - Programacion I - UFM - Credits: David Corzo, Jorge Pineda & Steven Wilson------------------------------------|')
         print("|------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
                 
                 #subirALink

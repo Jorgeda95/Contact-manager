@@ -10,34 +10,31 @@ import requests
 
 
 def Esthetics1():
+    """Imprime una linea en blanco"""
     print('')
     
 
 def produceContactID2(nombre,apellido):
+    """Crea el contactID, le da retur a key. Utiliza el nombre y apellido con lower"""
     nombre = nombre.lower()
     apellido = apellido.lower()
     key=str(nombre) + str(apellido)
     return key
 
-# def pprint(diccionario):
-#     iteration = 0
-#     for k,v in dicciccionario:
-#         print("{} : " .format(k,v))
-#         for v in k,v:
-#             print("Nombre:", {}, "Apellido", {}, "Telefono", {})
-
-# def pprint(dicc):
-#     for k,v in dicc.items():
-#         print("{}: {}".format(k,v))
+def pprint(diccionario):
+    """Pretty print, imprime el diccionario ordenado y separado por categoria"""
+    for key, value in diccionario.items():
+        print('')
+        print("ContactID:", key)
+        for key, value in value.items():
+            print(key,value)
         
-
-
 #################################################################################################################################################################################
 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #
 #################################################################################################################################################################################
 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #
 #################################################################################################################################################################################
-#def documentacionDeLaFase1():
+def documentacionDeLaFase1():
     '''
     Fase 1:
     1. addContact: Nombre, Apellido y Telefono 
@@ -48,22 +45,25 @@ def produceContactID2(nombre,apellido):
 
 
 def addContacts3(nombre, apellido, telefono,diccionarioMaestro):
-    key=produceContactID2(nombre,apellido)
+    """Agrega un nuevo contacto al diccionario con el input del nombre, apellido, telefono"""
+    key = produceContactID2(nombre,apellido)
     nestedDictionary = {'nombre':nombre,'apellido':apellido,'telefono':telefono}
     diccionarioMaestro[key] = nestedDictionary
     return diccionarioMaestro
     
 
 def listContacts4(diccionarioMaestro):
+    """Imprime el diccionario de una forma ordena, este formato no toma en cuenta el uso de un nested dictionary, no usa el contactID"""
     print("Contact List")
     for key in diccionarioMaestro:
         print("Nombre Del Contacto: {} {}, Teléfono: {}".format(diccionarioMaestro[key]['nombre'], diccionarioMaestro[key]['apellido'], diccionarioMaestro[key]['telefono']))
 
 def removeContact5(nombre,apellido,diccionarioMaestro):
+    """Remueve del diccionario el contacto ingresado"""
     key = produceContactID2(nombre,apellido)
     try:
         del diccionarioMaestro[key]
-        valid2 = 'yes'
+        # valid2 = 'yes'
     except:
         print("El contacto ingresado está mal escrito o no existe en la lista de contactos")
 
@@ -74,7 +74,7 @@ def removeContact5(nombre,apellido,diccionarioMaestro):
 #################################################################################################################################################################################
 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #
 #################################################################################################################################################################################
-#def documentacionDeLaFase2():
+def documentacionDeLaFase2():
     """ Fase 2: 
     1. Leer/cargar (automaticamente) los contactos de un archivo llamado InitialContacts.txt, si y solo si el archivo existe en el mismo directorio que su programa.py
     2. Agregarlos a la “lista” que anteriormente estaba vacia , es decir ahora su lista ya va a estar pre-inicializada
@@ -87,6 +87,7 @@ def removeContact5(nombre,apellido,diccionarioMaestro):
 
 
 def readFile6(filename):
+    """Lee un archivo externo, le quita las lineas en blanco, y lo agrega los contactos al diccionario en base al nombre, appelido, telefono"""
     with open(filename) as archivo:
         print("el archivo a leer es {}".format(filename))
         reader = archivo.readlines()
@@ -157,27 +158,29 @@ def readFile6(filename):
 
 
 def callContact8(contactID,diccionarioMaestro):
-        try:
-            if contactID in diccionarioMaestro:
-                contactID = diccionarioMaestro[contactID]['nombre'] + ' ' + diccionarioMaestro[contactID]['apellido'] #se ingresa el ID para que llame a la persona que desea 
-                Esthetics1()
-                print("Llamando a: {}".format(contactID)) #imprime el nombre de la persona con el texto llamando a
-                #print("Teléfono: {}".format)
-                for restantes in range(60, 0, -1): #contador de en retroseso de 60 segundos 
-                        sys.stdout.write("\r")
-                        #sys.stdout.write("Llamando a: {}".format(nombre))
-                        sys.stdout.write("{:2d} Segundos restantes".format(restantes)) #se utilizo sys,stdout porque se pueden combinar int y string
-                        sys.stdout.flush()
-                        time.sleep(1)
-                sys.stdout.write("\rSe realizo la llamada con éxito!!            \n")
-            else:
-                print('\nEl contacto está mal escrito o no existe.')
-        except KeyboardInterrupt:
+    """Llama al contacto ingresado"""
+    try:
+        if  contactID in diccionarioMaestro:
+            contactID = diccionarioMaestro[contactID]['nombre'] + ' ' + diccionarioMaestro[contactID]['apellido'] #se ingresa el ID para que llame a la persona que desea 
+            Esthetics1()
+            print("Llamando a: {}".format(contactID)) #imprime el nombre de la persona con el texto llamando a
+            #print("Teléfono: {}".format)
+            for restantes in range(60, 0, -1): #contador de en retroseso de 60 segundos 
+                    sys.stdout.write("\r")
+                    #sys.stdout.write("Llamando a: {}".format(nombre))
+                    sys.stdout.write("{:2d} Segundos restantes".format(restantes)) #se utilizo sys,stdout porque se pueden combinar int y string
+                    sys.stdout.flush()
+                    time.sleep(1)
+            sys.stdout.write("\rSe realizo la llamada con éxito!!            \n")
+        else:
+            print('\nEl contacto está mal escrito o no existe.')
+    except KeyboardInterrupt:
                 print("\nla llamada se cancelo")
                 Esthetics1()
 
 
 def msgContacts9(mensaje,contactsToSendTo,diccionarioMaestro ):
+        """Manda un mensaje a los contactos si estan en el diccionario ingresado"""
         listSplit = contactsToSendTo.split(',')
         verifiedSplit = []
         invalidSplit = []
@@ -200,6 +203,7 @@ def msgContacts9(mensaje,contactsToSendTo,diccionarioMaestro ):
 
         
 def addFavoriteList10(favoriteContactAddition,favorites,diccionarioMaestro):
+    """Agrega contactos a favoritos"""
     listSplit = favoriteContactAddition.split(',')
     verifiedSplit = []
     invalidSplit = []
@@ -211,10 +215,7 @@ def addFavoriteList10(favoriteContactAddition,favorites,diccionarioMaestro):
             invalidSplit.append(listSplit[iteration1])
         
         iteration1 = iteration1 + 1
-    
-
-
-    
+        
     if len(invalidSplit) != 0:
         print('Contacto(s) → {} ← parece(n) no existir en la lista de contactos'.format(', '.join(invalidSplit)))
         print("Porfavor asegúrese de haber escrito el contacto correctamente y que el contacto si exista en el directorio.")
@@ -229,6 +230,7 @@ def addFavoriteList10(favoriteContactAddition,favorites,diccionarioMaestro):
 
 
 def removeFromFavorites11(favoriteContactdelete,favorites,diccionarioMaestro):
+    """Remueve contactos de favoritos"""
     listSplit = favoriteContactdelete.split(',')
     verifiedSplit = []
     invalidSplit = []
@@ -275,6 +277,7 @@ def removeFromFavorites11(favoriteContactdelete,favorites,diccionarioMaestro):
 
 
 def loadFromFile12(filename,diccionarioMaestro):
+    """Agrega contactos de un archivo externo al diccionario"""
     words = readFile6(filename)
     iteration = 0
     for line in words:
@@ -314,6 +317,7 @@ def loadFromFile12(filename,diccionarioMaestro):
 
 
 def post13(gid,urlPost,diccionarioMaestro):
+    """Manda contactos del diccionario a un URL"""
     #urlPost="https://reqres.in/api/users"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
     urlPost=input("Ingrese la url con la desea utilizar el método POST:\n  ")#Metodo 2 Si desea que la url se ingrese
@@ -333,6 +337,7 @@ def post13(gid,urlPost,diccionarioMaestro):
     #imprime la data 
 
 def get14(gid,urlGet,diccionarioMaestro):
+    """Recibe contactos de un URL y los ingresa al diccionario"""
     #urlGet="http://demo7862839.mockable.io/contacts?gid=100"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
     
