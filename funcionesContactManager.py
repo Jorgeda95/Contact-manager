@@ -224,7 +224,7 @@ Juan,Diaz,123456
 Jose,Miranda,1378978
 Gabriela,Estrada,798456
 
-Nota: ya tiene una funcion que hace algo similar verdad? (FASE 1), el archivo podria tener
+Nota: ya tiene una funcion que hace algo similar verdad? (FASE 1), el archivo podría tener
 cualquier extension: .txt, .csv, .lists, .contacts, solo asegurese de leer texto y que el contenido
 del archivo sea como fue detallado, vea como ejemplo http://demo7862839.mockable.io/example.contacts
 """
@@ -259,5 +259,20 @@ Nota: observe que la imagen muestra “10” fases, no debe ser necesariamente a
 
 
 
-
-
+'''
+Fase 6
+Save to Web via HTTP methods, en lo visto en clase aprendimos GET y POST.
+El dia del proyecto se le proveera con una URL (por ejemplo: http://marcosapi.com/) a la cual
+usted debera: crear un contact list y obtener un contact list
+POST:
+- http://demo7862839.mockable.io/contacts?gid=100 usando el metodo POST debera
+exportar y crear su “current” contact list mediante un payload (data) que contenga su
+contact list en forma dictionary (JSON, ver ejemplo abajo)
+GET:
+- http://demo7862839.mockable.io/contacts?gid=100
+- gid=100 es el request parameter (query param) y es igual a 100, por que ese es mi fake
+gid.
+En ambos casos puede usar gid como query parameter o proveer un custom request header
+gid: HTTP
+_ID
+'''
