@@ -10,7 +10,9 @@ import requests
 
 
 def Esthetics():
-        print('__________________________________________________________________________________________________________________________________________________________________________________________________________________')
+    print("")
+    print('__________________________________________________________________________________________________________________________________________________________________________________')
+    
 
 def produceContactID(nombre,apellido):
     nombre = nombre.lower()
@@ -18,10 +20,16 @@ def produceContactID(nombre,apellido):
     key=str(nombre) + str(apellido)
     return key
 
-# def pprint(dicc):
+# def pprint(diccionario):
 #     iteration = 0
-#     for k,v in dicc:
-#         dicc[iteration][key]
+#     for k,v in dicciccionario:
+#         print("{} : " .format(k,v))
+#         for v in k,v:
+#             print("Nombre:", {}, "Apellido", {}, "Telefono", {})
+
+# def pprint(dicc):
+#     for k,v in dicc.items():
+#         print("{}: {}".format(k,v))
         
 
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -38,7 +46,7 @@ def addContacts(nombre, apellido, telefono):
     diccionarioMaestro[key] = nestedDictionary
     print(diccionarioMaestro)
 
-def listContacts():
+def listContacts(diccionarioMaestro):
     print("Contact List")
     for key in diccionarioMaestro:
         print("Nombre Del Contacto: {} {}, Teléfono: {}".format(diccionarioMaestro[key]['nombre'], diccionarioMaestro[key]['apellido'], diccionarioMaestro[key]['telefono']))
@@ -135,10 +143,13 @@ def ContactID(nombre,apellido):
     key=str(nombre) + str(apellido)
     return key
 
-def callContact():
+
+def callContact(key):
         try:
-                nombre = input("Ingrese el contact ID: → ") #se ingresa el ID para que llame a la persona que desea 
-                print("Llamando a: {}".format(nombre)) #imprime el nombre de la persona con el texto llamando a
+                
+                contactID = diccionarioMaestro[key] #se ingresa el ID para que llame a la persona que desea 
+                print("Llamando a: {}".format(contactID)) #imprime el nombre de la persona con el texto llamando a
+                #print("Teléfono: {}".format)
                 for restantes in range(60, 0, -1): #contador de en retroseso de 60 segundos 
                         sys.stdout.write("\r")
                         #sys.stdout.write("Llamando a: {}".format(nombre))
@@ -291,7 +302,7 @@ Usted debe ingeniar como pedir los contactos y como hacer wrap-around dentro del
 Nota: observe que la imagen muestra “10” fases, no debe ser necesariamente asi, hay mas de
 5 fases, aun que la ultima opcion si debe ser Exit. """
 
-
+#  --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 '''
 Fase 6
@@ -311,16 +322,16 @@ gid: HTTP
 _ID
 '''
 #POST
-def Post(string):
-    urlPost="https://reqres.in/api/users"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
+def Post(params):
+    #urlPost="https://reqres.in/api/users"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
-    #urlPost=input("Ingrese la url con la desea utilizar el metodo POST:\n  ")#Metodo 2 Si desea que la url se ingrese
-
+    urlPost=input("Ingrese la url con la desea utilizar el método POST:\n  ")#Metodo 2 Si desea que la url se ingrese
+    gid = 0
     params = {'gid':gid}
     #Se ingresa el gid que es el valor
 
-    payload={'FirstName': 'Michael', 'LastName': 'Kirk', 'phone': '123123'}
-    #payload=diccionarioMaestro
+    #payload={'FirstName': 'Michael', 'LastName': 'Kirk', 'phone': '123123'}
+    payload=diccionarioMaestro
     #la información (data) para subir
 
     postResponse=requests.post(urlPost, params = params, json=payload)
@@ -330,11 +341,10 @@ def Post(string):
     print(dataPost)
     #imprime la data 
 
-def Get(string):
-    urlGet="http://demo7862839.mockable.io/contacts?gid=100"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
+def Get(params,urlGet,gid):
+    #urlGet="http://demo7862839.mockable.io/contacts?gid=100"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
-    #urlGet=input("Ingrese la url con la desea utilizar el metodo GET:\n  ")#Metodo 2 Si desea que la url se ingrese
-
+    
     params = {'gid':gid}
     #Se ingresa el gid que es el valor
 
@@ -343,34 +353,15 @@ def Get(string):
     print(getResponse)
     #imprime el status code
     print(dataGet)
-    #imprime la data 
-
-
-def menuPG():
-    print("Menu Fase 6:")
-    print("Opción#1 POST")
-    print("Opción#2 GET\n")
-
-def opcionesPG(opcionPG=0):
-	Opcion = int(input("Escoja una opción:\n"))
-	return Opcion
-menuFase6 = menuPG()
-
-    opcionPG = opcionesPG()
-#POST
-if (opcionPG == 1):
-        gid = input(str("Ingrese el gid para POST:\n"))
-        Post(gid)
-#GET
-elif (opcionPG ==2):
-        gid = input(str("Ingresa el gid para GET\n"))
-        Get(gid)
+    #imprime la data
+    diccionarioMaestro = dataGet
+    return diccionarioMaestro
 
 
 
-
-
-
-
+# urlGet=input("Ingrese la url con la desea utilizar el metodo GET:\n  ")
+# gid = input('Inserte Gid: → ')
+# Get(23,urlGet,gid)
+# Post(100)
 
 #print(diccionarioMaestro)

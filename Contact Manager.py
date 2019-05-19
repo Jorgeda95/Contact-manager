@@ -23,16 +23,29 @@ Los métodos de importación de datos son: →
         if importacionDeDatos == '1':
                 try:
                         filename = input('Ingrese el nombre de sus archivos: → ') 
-                        activeFile= os.path.exists(filename)   
+                        activeFile= os.path.exists(filename) 
+                        # loadFromFile(filename,diccionarioMaestro)  
                         
                         if activeFile == True:
-                                loadFromFile(filename, diccionarioMaestro)
-                        
+                                Esthetics()
+                                diccionarioMaestro = loadFromFile(filename, diccionarioMaestro)
+                                
                 except:
                         print("El archivo elegido no está en el directorio")
 
         if importacionDeDatos == '2':
-                pass
+                try:
+                        print("Método GET: → ")
+                        urlGet=input("Ingrese la url con la desea utilizar el método GET:\n  ")
+                        gid = input(str("Ingresa el gid para GET: → "))
+                        # Get(gid,urlGet)
+                        
+                        # https://jsonplaceholder.typicode.com/todos/
+                except:
+                        print('La URL seleccionada no es válida.')
+
+
+        
 
         #Fase 5 menú
         impresionDeMenu =  input('¿Desea imprimir el menú de opciones? ("si","no") →')
@@ -47,49 +60,79 @@ Los métodos de importación de datos son: →
 7. Para remover un contacto de favoritos presione “7”
 8. Para salir del menú presione “8”
                 ''')
+        validacionDeMain = 'si'
+        while validacionDeMain == 'si':
 
-        userChoice = input('Ingrese qué quiere hacer: → ')
-        
-        if userChoice == '1':
-                valid1 = 'no'
-                while valid1 == 'no':
-                        nombre = input('Ingrese el nombre del contacto: → ')
-                        apellido = input('Ingrese el apellido del contacto: → ')
-                        telefono = input('Ingrese el telefono del contacto: → ')
-                        valid1 = input('¿Ha ingresado correctamente todos los campos ("si","no"): → ')
-                addContacts(nombre,apellido,telefono)
-
-        elif userChoice == '2':
-                listContacts()
-
-        elif userChoice == '3':
-                valid2 = 'no'
-                while valid2 == 'no':
-                        nombre = input('Ingrese el nombre del contacto')
-                        apellido = input('')
-                        #la función ya trae su seguro
-                        removeContact(nombre,apellido)
-
-        elif userChoice == '4':
-                callContact()
-
-        elif userChoice == '5':
-                #Fase 3 msgContacts
-                mensaje = input('Ingrese su mensaje: → ')
-                contactsToSendTo = input('Ingrese contacto(s) al que desea enviar el mensaje (nombre y apellido separado por comas): → ')
-                msgContacts(mensaje,contactsToSendTo)
-
-        elif userChoice == '6':
+                userChoice = input('Ingrese qué quiere hacer: → ')
                 
-                favoriteContactAddition = input('¿Qué contacto desea agregar a favoritos? (contactid) →')
-                addFavoriteList(favoriteContactAddition,favorites)
+                if userChoice == '1':
+                        valid1 = 'no'
+                        while valid1 == 'no':
+                                nombre = input('Ingrese el nombre del contacto: → ')
+                                apellido = input('Ingrese el apellido del contacto: → ')
+                                telefono = input('Ingrese el telefono del contacto: → ')
+                                valid1 = input('¿Ha ingresado correctamente todos los campos ("si","no"): → ')
+                        addContacts(nombre,apellido,telefono)
 
-        elif userChoice == '7':
-                favoriteContactDelete = input('¿Qué contacto desea eliminar de favoritos? (contactid) →')
-                removeFromFavorites(favoriteContactDelete,favorites)
+                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        Esthetics()
 
-        elif userChoice == '8':
-                pass
+                elif userChoice == '2':
+                        listContacts(diccionarioMaestro)
+                        
+                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        Esthetics()
+
+                elif userChoice == '3':
+                        valid2 = 'no'
+                        while valid2 == 'no':
+                                nombre = input('Ingrese el nombre del contacto')
+                                apellido = input('')
+                                #la función ya trae su seguro
+                                removeContact(nombre,apellido)
+
+                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        Esthetics()
+
+                elif userChoice == '4':
+                        print(diccionarioMaestro)
+                        key = input('contactID → ')
+                        callContact(key)
+
+                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        Esthetics()
+
+                elif userChoice == '5':
+                        #Fase 3 msgContacts
+                        mensaje = input('Ingrese su mensaje: → ')
+                        contactsToSendTo = input('Ingrese contacto(s) al que desea enviar el mensaje (nombre y apellido separado por comas): → ')
+                        msgContacts(mensaje,contactsToSendTo)
+
+                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+
+                elif userChoice == '6':
+                        
+                        favoriteContactAddition = input('¿Qué contacto desea agregar a favoritos? (contactid) →')
+                        addFavoriteList(favoriteContactAddition,favorites)
+
+                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+
+                elif userChoice == '7':
+                        favoriteContactDelete = input('¿Qué contacto desea eliminar de favoritos? (contactid) →')
+                        removeFromFavorites(favoriteContactDelete,favorites)
+
+                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+
+                elif userChoice == '8':
+                        pass
+
+                
+        
+                #subirALink
+                # print("Método POST: → ")
+                # gid = input(str("Ingrese el gid para POST:\n"))
+                # Post(gid)
+                
 
 
   

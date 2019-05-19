@@ -44,7 +44,8 @@ del archivo sea como fue detallado, vea como ejemplo http://demo7862839.mockable
 
 # print(hash(str(uuid.uuid1())) % 1000)
 
-import csv
-f = open("IntialContacts.txt")
-r = csv.reader(f)
-print(r.next())
+# 
+
+a = ['\n','a','\n']
+b = ''.join(a)
+print(b.splitlines())
