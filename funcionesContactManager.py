@@ -234,20 +234,49 @@ del archivo sea como fue detallado, vea como ejemplo http://demo7862839.mockable
 filename = 'InitialContacts.txt'
 #input('Ingrese el nombre del archivo: → ')
 
-def loadFromFile(externalFile):
+# def loadFromFile(externalFile):
     
 
-    data = []
-    file = open(filename, "r")
-    for line in file:
-        data.append(line)
+#     data = []
+#     file = open(filename, "r")
+#     for line in file:
+#         data.append(line)
 
-    data = ''.join(data)
-    data = data.split(',')
+#     data = ''.join(data)
+#     data = data.split(',')
+
+#     # fileToDict
+     
+        
+#     #asignacion de valores a diccionario maestro
+#     # iteration = 0
+#     # for n in data:
+diccionarioMaestro = {}
+
+def loadFromFile(filename,diccionarioMaestro):
+    lines=readFile(filename)
+    for line in lines:
+        words = line.split(",")
+        for word in words:
+            if word != "\n":
+                word=word.strip()
+                letter=word[0]
+                print(letter)
+                
+                # iterationName = 0 
+                # iterationLast = 1
+                # iterationTelf = 2
+                # # for n in word:
+                # # if letter in diccionarioMaestro:
+                # #     diccionarioMaestro[letter].append(word)
+                # # else:
+                # #     diccionarioMaestro[letter]=[]
+                # #     diccionarioMaestro[letter].append(word)
+    return diccionarioMaestro
 
     
     
-loadFromFile(filename)
+print(loadFromFile(filename,diccionarioMaestro))
 
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
 

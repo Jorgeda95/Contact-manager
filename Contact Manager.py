@@ -1,4 +1,4 @@
-import funcionesContactManager
+from funcionesContactManager import *
 ##########################################################################################################################################################
 #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAI
 ##########################################################################################################################################################
@@ -49,10 +49,10 @@ Los métodos de importación de datos son: →
                         apellido = input('Ingrese el apellido del contacto: → ')
                         telefono = input('Ingrese el telefono del contacto: → ')
                         valid1 = input('¿Ha ingresado correctamente todos los campos ("si","no"): → ')
-                funcionesContactManager.addContacts(nombre,apellido,telefono)
+                addContacts(nombre,apellido,telefono)
 
         elif userChoice == '2':
-                funcionesContactManager.listContacts()
+                listContacts()
 
         elif userChoice == '3':
                 valid2 = 'no'
@@ -60,25 +60,25 @@ Los métodos de importación de datos son: →
                         nombre = input('Ingrese el nombre del contacto')
                         apellido = input('')
                         #la función ya trae su seguro
-                        funcionesContactManager.removeContact(nombre,apellido)
+                        removeContact(nombre,apellido)
 
         elif userChoice == '4':
-                funcionesContactManager.callContact()
+                callContact()
 
         elif userChoice == '5':
                 #Fase 3 msgContacts
                 mensaje = input('Ingrese su mensaje: → ')
                 contactsToSendTo = input('Ingrese contacto(s) al que desea enviar el mensaje (nombre y apellido separado por comas): → ')
-                funcionesContactManager.msgContacts(mensaje,contactsToSendTo)
+                msgContacts(mensaje,contactsToSendTo)
 
         elif userChoice == '6':
                 favorites = {}
                 favoriteContactAddition = input('¿Qué contacto desea agregar a favoritos? (contactid) →')
-                funcionesContactManager.addFavoriteList(favoriteContactAddition,favorites)
+                addFavoriteList(favoriteContactAddition,favorites)
 
         elif userChoice == '7':
                 favoriteContactDelete = input('¿Qué contacto desea eliminar de favoritos? (contactid) →')
-                funcionesContactManager.removeFromFavorites(favoriteContactDelete,favorites)
+                removeFromFavorites(favoriteContactDelete,favorites)
 
         elif userChoice == '8':
                 pass

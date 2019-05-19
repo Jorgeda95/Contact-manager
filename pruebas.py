@@ -40,6 +40,11 @@ del archivo sea como fue detallado, vea como ejemplo http://demo7862839.mockable
 # print([s.strip('8') for s in lst]) # remove the 8 from the string borders
 # print([s.replace('8', '') for s in lst]) # remove all the 8s 
 
-import uuid
+# import uuid
 
-print(hash(str(uuid.uuid1())) % 1000)
+# print(hash(str(uuid.uuid1())) % 1000)
+
+import csv
+f = open("IntialContacts.txt")
+r = csv.reader(f)
+print(r.next())
