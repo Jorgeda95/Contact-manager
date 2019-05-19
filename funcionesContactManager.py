@@ -3,11 +3,14 @@ import colorama
 import sys, traceback
 import sys, time
 import os
+import csv
 
 diccionarioMaestro = {}
 filename = "initialContacts.txt"
 activeFile= os.path.exists(filename)
 
+def Esthetics():
+        print('__________________________________________________________________________________________________________________________________________________________________________________________________________________')
 
 def produceContactID(nombre,apellido):
     nombre = nombre.lower()
@@ -30,7 +33,7 @@ def produceContactID(nombre,apellido):
 def addContacts(nombre, apellido, telefono):
     key=str(nombre) + str(apellido)
     nestedDictionary = {'nombre':nombre,'apellido':apellido,'telefono':telefono}
-    diccionarioMaestro[key] =[nestedDictionary]
+    diccionarioMaestro[key] = nestedDictionary
     print(diccionarioMaestro)
 
 def listContacts():
@@ -128,20 +131,92 @@ def callContact():
         except KeyboardInterrupt:
                 print("\nla llamada se cancelo")
 
-def msgContacts():
-        pass
 
-def addFavoriteList():
-        pass
+def msgContacts(mensaje,contactsToSendTo):
+        listSplit = contactsToSendTo.split(',')
+        verifiedSplit = []
+        invalidSplit = []
+        iteration1 = 0
+        for items in listSplit:
+            if listSplit[iteration1] in diccionarioMaestro:
+                verifiedSplit.append(listSplit[iteration1])
+            else:
+                invalidSplit.append(listSplit[iteration1])
+            iteration1 = iteration1 + 1
 
-def removeFromFavorite():
-        pass
 
+        
+        if len(invalidSplit) != 0:
+            print('Contacto(s) → {} ← parece(n) no existir en la lista de contactos'.format(', '.join(invalidSplit)))
+            print("Porfavor asegúrese de haber escrito el contacto correctamente y que el contacto si exista en el directorio.")
+
+        elif len(invalidSplit) == 0:
+            print('To: {}'.format(', '.join(verifiedSplit)),' → ', mensaje)
+
+        
+
+ 
+
+
+def addFavoriteList(favoriteContactAddition,favorites):
+    listSplit = favoriteContactAddition.split(',')
+    verifiedSplit = []
+    invalidSplit = []
+    iteration1 = 0
+    for items in listSplit:
+        if listSplit[iteration1] in diccionarioMaestro:
+            verifiedSplit.append(listSplit[iteration1])
+        else:
+            invalidSplit.append(listSplit[iteration1])
+        
+        iteration1 = iteration1 + 1
+
+
+    
+    if len(invalidSplit) != 0:
+        print('Contacto(s) → {} ← parece(n) no existir en la lista de contactos'.format(', '.join(invalidSplit)))
+        print("Porfavor asegúrese de haber escrito el contacto correctamente y que el contacto si exista en el directorio.")
+
+    elif len(invalidSplit) == 0:
+        iteration2 = 0
+        for n in verifiedSplit:
+            favorites[verifiedSplit[iteration2]] = diccionarioMaestro[verifiedSplit[iteration2]]
+            iteration2 = iteration2 + 1
+        diccionarioMaestro['favorites'] = favorites
+
+
+
+def removeFromFavorites(favoriteContactdelete,favorites):
+    listSplit = favoriteContactdelete.split(',')
+    verifiedSplit = []
+    invalidSplit = []
+    iteration1 = 0
+    for items in listSplit:
+        if listSplit[iteration1] in diccionarioMaestro:
+            verifiedSplit.append(listSplit[iteration1])
+        else:
+            invalidSplit.append(listSplit[iteration1])
+        
+        iteration1 = iteration1 + 1
+
+    print(verifiedSplit)
+    
+    if len(invalidSplit) != 0:
+        print('Contacto(s) → {} ← parece(n) no existir en la lista de contactos'.format(', '.join(invalidSplit)))
+        print("Porfavor asegúrese de haber escrito el contacto correctamente y que el contacto si exista en el directorio.")
+
+    elif len(invalidSplit) == 0:
+        iteration2 = 0
+        for n in verifiedSplit:
+            del diccionarioMaestro['favorites'][verifiedSplit[iteration2]]
+            del favorites[verifiedSplit[iteration2]]
+            iteration2 = iteration2 + 1
+        print(', '.join(verifiedSplit))
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 """ Fase 4:
 Implemente un metodo que se llame loadFromFile(externalFile), que reciba el nombre de un
-archivo del cual se leeran los contactos, su metodo debe ser failsafe, es decir si el archivo no
+archivo del cual se leerán los contactos, su método debe ser failsafe, es decir si el archivo no
 existe no ejecutar nada y devolver un “error”
 El programa (CLI) debe pedir el full path del archivo “~/Downloads/contacts.txt” y dentro del archivo el contenido debera lucir asi:
 
@@ -151,10 +226,28 @@ Gabriela,Estrada,798456
 
 Nota: ya tiene una funcion que hace algo similar verdad? (FASE 1), el archivo podria tener
 cualquier extension: .txt, .csv, .lists, .contacts, solo asegurese de leer texto y que el contenido
-del archivo sera como fue detallado, vea como ejemplo http://demo7862839.mockable.io/example.contacts
+del archivo sea como fue detallado, vea como ejemplo http://demo7862839.mockable.io/example.contacts
 """
+
+
+
+filename = 'InitialContacts.txt'
+#input('Ingrese el nombre del archivo: → ')
+
 def loadFromFile(externalFile):
-        pass
+    
+
+    data = []
+    file = open(filename, "r")
+    for line in file:
+        data.append(line)
+
+    data = ''.join(data)
+    data = data.split(',')
+
+    
+    
+loadFromFile(filename)
 
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -164,8 +257,6 @@ Usted debe ingeniar como pedir los contactos y como hacer wrap-around dentro del
 Nota: observe que la imagen muestra “10” fases, no debe ser necesariamente asi, hay mas de
 5 fases, aun que la ultima opcion si debe ser Exit. """
 
-def menu():
-        pass
 
 
 
