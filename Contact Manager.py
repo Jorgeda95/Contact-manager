@@ -18,11 +18,9 @@ def main():
     if activeFile ==True:
             addContactsFromTxt(filename)
             print()
-    # pprint(diccionarioMaestro)
+            print(diccionarioMaestro)
     
     else:
             print("There is no initial contacts list, try changing directory cd (Where the file is)")
-
-
 
 main()

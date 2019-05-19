@@ -3,17 +3,20 @@ import colorama
 import sys, traceback
 import sys, time
 import os
+import random
 
 diccionarioMaestro = {}
 filename = "initialContacts.txt"
 activeFile= os.path.exists(filename)
 
+def produceContactID():
+        all = "0123456789abcdef"
+        result = [random.choice('abcdef')] + [random.choice(all) for _ in range(4)]
+        random.shuffle(result)
+        result.insert(0, random.choice(all[1:]))
+        contactID=''.join(result)
+        return contactID
 
-def produceContactID(nombre,apellido):
-    nombre = nombre.lower()
-    apellido = apellido.lower()
-    key=str(nombre) + str(apellido)
-    return key
 
 # def pprint(dicc):
 #     for k,v in dicc.items():
@@ -39,7 +42,7 @@ def listContacts():
         print("Nombre Del Contacto: {} {}, Teléfono: {}".format(diccionarioMaestro[key]['nombre'], diccionarioMaestro[key]['apellido'], diccionarioMaestro[key]['telefono']))
 
 def removeContact(nombre,apellido):
-    key = produceContactID(nombre,apellido)
+    key = produceContactID()
     confirmation = input("Estás seguro que quieres borrar el contacto → {} {} ← con el número de → telefono ← {} ← (Ingrese si o no) → ".format(diccionarioMaestro[key]['nombre'],diccionarioMaestro[key]['apellido'],diccionarioMaestro[key]['telefono']))
     if confirmation == "si":
         try:
@@ -70,12 +73,13 @@ def readFile(filename):
 
 def addContactsFromTxt(filename):
     lines=readFile(filename)
-    lines.strip("-")
+#     lines.strip("-")
     for line in lines:
         words = line.split(",")
-        newContactID = words[0]+words[1]
-
-        diccionarioMaestro.update( {newContactID : {"nombre": words[0], "apellido": words[1], "telefono": words[2]}})
+        contactID=""
+        produceContactID()
+        
+        diccionarioMaestro.update( {contactID : {"nombre": words[0], "apellido": words[1], "telefono": words[2]}})
     return diccionarioMaestro, print(diccionarioMaestro)
 
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -166,7 +170,6 @@ Nota: observe que la imagen muestra “10” fases, no debe ser necesariamente a
 
 def menu():
         pass
-
 
 
 
