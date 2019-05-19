@@ -4,23 +4,27 @@ from funcionesContactManager import *
 ##########################################################################################################################################################
 #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAIN #MAI
 ##########################################################################################################################################################
-#beg de variables globales
-diccionarioMaestro = {}
-favorites = {}
-activeFile= os.path.exists(filename)
-#fin de vairables globales
-
 def main():
+        
+        #beg de variables globales
+        diccionarioMaestro = {}
+        favorites = {}
+        
+        #fin de vairables globales
+
         print('''
 Los métodos de importación de datos son: → 
 → Por medio de un archivo que existe localmente presione "1"
 → Por medio de un link a un sitio web .json presione "2" 
 ''')
         importacionDeDatos = input('Porfavor seleccione el método de importación de datos: → ')
-        filename = "initialContacts.txt" #input('Ingrese el nombre de sus archivos: → ') 
+        
         #Fase 4 preguntar directorio
         if importacionDeDatos == '1':
                 try:
+                        filename = input('Ingrese el nombre de sus archivos: → ') 
+                        activeFile= os.path.exists(filename)   
+                        
                         if activeFile == True:
                                 loadFromFile(filename, diccionarioMaestro)
                         
@@ -87,41 +91,9 @@ Los métodos de importación de datos son: →
         elif userChoice == '8':
                 pass
 
+
+  
         
-        
-
-
-
-#     #for adding contacts
-#     nombre=input("Ingrese el nombre del nuevo contacto: → ")
-#     apellido=input("Ingrese el apellido del nuevo contacto: → ")
-#     telefono=input("Ingrese el numero de teléfono del nuevo contaco: → ")
-#     funcionesContactManager.addContacts(nombre,apellido,telefono)
-
-#     #leer/cargar initialContacts.txt and add to dictionary     
-#     if activeFile == True:
-#             funcionesContactManager.addContactsFromTxt(filename)
-#             print()
-#     # pprint(diccionarioMaestro)
-    
-#     else:
-#             print("There is no initial contacts list, try changing directory cd (Where the file is)")
-
-
-
-
-
-
-    #leer/cargar initialContacts.txt and add to dictionary     
-# {    if activeFile ==True:
-#             addContactsFromTxt(filename)
-#             print()
-#     # pprint(diccionarioMaestro)
-    
-#     else:
-#             print("There is no initial contacts list, try changing directory cd (Where the file is)")}
-
-
 
 if __name__ == "__main__":
     main()

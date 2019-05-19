@@ -1,4 +1,4 @@
-import pprint
+# import pprint
 import colorama
 import sys, traceback
 import sys, time
@@ -18,8 +18,10 @@ def produceContactID(nombre,apellido):
     return key
 
 # def pprint(dicc):
-#     for k,v in dicc.items():
-#         print("{}: {}".format(k,v))
+#     iteration = 0
+#     for k,v in dicc:
+#         dicc[iteration][key]
+        
 
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -95,7 +97,7 @@ def addContactsFromTxt(filename):
         newContactID = words[0]+words[1]
 
         diccionarioMaestro.update( {newContactID : {"nombre": words[0], "apellido": words[1], "telefono": words[2]}})
-    return diccionarioMaestro, print(diccionarioMaestro)
+    return diccionarioMaestro
 
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -279,7 +281,7 @@ def loadFromFile(filename,diccionarioMaestro):
         iteration = iteration + 1
     return diccionarioMaestro
     
-print(loadFromFile(filename,diccionarioMaestro))
+# print(loadFromFile(filename,diccionarioMaestro))
 
 #  --------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -308,3 +310,5 @@ En ambos casos puede usar gid como query parameter o proveer un custom request h
 gid: HTTP
 _ID
 '''
+
+print(diccionarioMaestro)
