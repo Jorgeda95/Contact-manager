@@ -137,13 +137,12 @@ def ContactID(nombre,apellido):
 
 def callContact():
         try:
-                nombre = input("Ingrese el contact ID: → ")
-                print("Llamando a: {}".format(nombre))
-                #print=input("Si desea cancelar la llamada presione la tecla C:  ")
-                for restantes in range(60, 0, -1):
+                nombre = input("Ingrese el contact ID: → ") #se ingresa el ID para que llame a la persona que desea 
+                print("Llamando a: {}".format(nombre)) #imprime el nombre de la persona con el texto llamando a
+                for restantes in range(60, 0, -1): #contador de en retroseso de 60 segundos 
                         sys.stdout.write("\r")
                         #sys.stdout.write("Llamando a: {}".format(nombre))
-                        sys.stdout.write("{:2d} Segundos restantes".format(restantes)) 
+                        sys.stdout.write("{:2d} Segundos restantes".format(restantes)) #se utilizo sys,stdout porque se pueden combinar int y string
                         sys.stdout.flush()
                         time.sleep(1)
                 sys.stdout.write("\rSe realizo la llamada con éxito!!            \n")
@@ -321,6 +320,7 @@ def Post(string):
     #Se ingresa el gid que es el valor
 
     payload={'FirstName': 'Michael', 'LastName': 'Kirk', 'phone': '123123'}
+    #payload=diccionarioMaestro
     #la información (data) para subir
 
     postResponse=requests.post(urlPost, params = params, json=payload)
@@ -346,24 +346,23 @@ def Get(string):
     #imprime la data 
 
 
-def Menu():
+def menuPG():
     print("Menu Fase 6:")
     print("Opción#1 POST")
     print("Opción#2 GET\n")
 
-def Opciones(OpcionMenu=0):
+def opcionesPG(opcionPG=0):
 	Opcion = int(input("Escoja una opción:\n"))
 	return Opcion
-MenuPrincipal = Menu()
+menuFase6 = menuPG()
 
-OpcionMenu = Opciones()
+    opcionPG = opcionesPG()
 #POST
-
-if (OpcionMenu == 1):
+if (opcionPG == 1):
         gid = input(str("Ingrese el gid para POST:\n"))
         Post(gid)
 #GET
-elif (OpcionMenu ==2):
+elif (opcionPG ==2):
         gid = input(str("Ingresa el gid para GET\n"))
         Get(gid)
 
