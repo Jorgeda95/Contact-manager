@@ -54,7 +54,7 @@ def addContacts3(nombre, apellido, telefono,diccionarioMaestro):
 
 def listContacts4(diccionarioMaestro):
     """Imprime el diccionario de una forma ordena, este formato no toma en cuenta el uso de un nested dictionary, no usa el contactID"""
-    print("Contact List")
+    print("Contact List → \n")
     for key in diccionarioMaestro:
         print("Nombre Del Contacto: {} {}, Teléfono: {}".format(diccionarioMaestro[key]['nombre'], diccionarioMaestro[key]['apellido'], diccionarioMaestro[key]['telefono']))
 
@@ -252,11 +252,10 @@ def removeFromFavorites11(favoriteContactdelete,favorites,diccionarioMaestro):
     elif len(invalidSplit) == 0:
         iteration2 = 0
         for n in verifiedSplit:
-            del diccionarioMaestro['favorites'][verifiedSplit[iteration2]]
-            del favorites[verifiedSplit[iteration2]]
+            # del diccionarioMaestro['favorites'][verifiedSplit[iteration2]]
+            del diccionarioMaestro['favorites'][iteration2]
             iteration2 = iteration2 + 1
         print(', '.join(verifiedSplit))
-
 
 
 #################################################################################################################################################################################

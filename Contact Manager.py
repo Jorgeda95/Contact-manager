@@ -29,7 +29,11 @@ def main():
 
                                         diccionarioMaestro = loadFromFile12(filename, diccionarioMaestro)
                                         Esthetics1()
-                                validacionDeImportacion = 'yes'
+                                        validacionDeImportacion = 'yes'
+
+                                elif activeFile == False:
+                                        print("El archivo no ha sido agregado o no está en el directorio")
+                                        validacionDeImportacion = 'no'
                                         
                         except:
                                 print("El archivo elegido no está en el directorio")
