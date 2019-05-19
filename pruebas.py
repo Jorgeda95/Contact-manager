@@ -23,7 +23,7 @@ def Post(string):
     #imprime la data 
 
 def Get(string):
-    urlGet="https://reqres.in/api/users"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
+    urlGet="http://demo7862839.mockable.io/contacts?gid=100"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
     #urlGet=input("Ingrese la url con la desea utilizar el metodo GET:\n  ")#Metodo 2 Si desea que la url se ingrese
 
@@ -50,11 +50,12 @@ MenuPrincipal = Menu()
 
 OpcionMenu = Opciones()
 #POST
+
 if (OpcionMenu == 1):
         gid = input(str("Ingrese el gid para POST:\n"))
         Post(gid)
 #GET
-if (OpcionMenu ==2):
+elif (OpcionMenu ==2):
         gid = input(str("Ingresa el gid para GET\n"))
         Get(gid)
 
