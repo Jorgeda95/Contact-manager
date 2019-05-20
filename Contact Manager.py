@@ -73,7 +73,7 @@ def main():
         if impresionDeMenu == 'si':
                 print('')
                 print('Menú de opciones: → ')
-                print('     1. Para agregar contacto presione “1” \n     2. Para enlistar la lista de contactos presione “2” \n     3. Para eliminar un contacto presione “3” \n     4. Para llamar a un contacto mediante un contact ID presione “4” \n     5. Para mandar un mensaje a un o lista de contactos presione “5” \n     6. Para agregar un contacto a favoritos presione “6” \n     7. Para remover un contacto de favoritos presione “7” \n     8. Para salir del menú presione “8”')
+                print('     1. Para agregar contacto presione “1” \n     2. Para enlistar la lista de contactos presione “2” \n     3. Para eliminar un contacto presione “3” \n     4. Para llamar a un contacto mediante un contact ID presione “4” \n     5. Para mandar un mensaje a un o lista de contactos presione “5” \n     6. Para agregar un contacto a favoritos presione “6” \n     7. Para remover un contacto de favoritos presione “7” \n     8. Para ver lista de contactos en favoritos presione "8" \n     9. Para salir del menú presione “9”')
                 print('')
         validacionDeMain = 'si'
 
@@ -150,6 +150,8 @@ def main():
                         Esthetics1()
 
                 elif userChoice == '8':
+                        print('Los contactos en favoritos son: → ')
+                        listFavoritesContacts4punto5(favorites)
                         validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
 
 
@@ -162,21 +164,30 @@ def main():
         if exportacion == 'si':
                 validacionDeExportacion = 'no'
                 while validacionDeExportacion == 'no':
-                        pass
-                        #Metodo de imprimir el output y ya
-                                #Debe de especificar qué expension tendrá el archivo
-
-                        #Metodo de meter el output a un archivo .txt o .cvs
-                                #que el usuario escoja el nombre de su nuevo archivo
-                                #Tenemos que hacer que si da error vuelva a preguntar el método de exportacion
-
-                        #Metodo de subir el output a un sitio web
-                                #Necesitamos una URL para subir
-                                #Tenemos que hacer que si da error vuelva a preguntar el método de exportacion
+                        print('Método #1: Imprime la información manipulada a la terminal directamente presione "1": → \nMétodo #2: Mete la información manipulada a un archivo que usted nombrará presione "2": → \nMétodo #3: Sube por el método POST la información manipulada a una URL de su elección presione "3"')
+                        metodoDeExportacion = input('¿Qué metodo desea emplear para exportar? ')
                         
-        print("|------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
-        print('|------------------------------------ Final Project - Programacion I - UFM - Credits: David Corzo, Jorge Pineda & Steven Wilson------------------------------------|')
-        print("|------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
+                        #exportación a la terminal directamente
+                        if metodoDeExportacion == '1':
+                                impresionDirectaALaTerminal15(diccionarioMaestro,favorites)
+                        
+                        #exportación a un archivo
+                        elif metodoDeExportacion == '2':
+                                newFileName = str(input('Ingrese el nombre de su archivo: (No olvide ponerle extensión) → '))
+                                exportacionDeLaDataAUnArchivoNuevo16(diccionarioMaestro,favorites,newFileName)
+                        
+                        #exportación POST
+                        elif metodoDeExportacion == '3':
+                                gid = input('Ingrese su gid: → ')
+                                urlPost = input('Ingrese l URL: → ')
+                                post13(gid,urlPost,diccionarioMaestro)
+                                pass
+                        
+                        
+                        
+        print("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
+        print('|------------------------------------------------ Final Project - Programación I - UFM - Credits: David Corzo, Jorge Pineda & Steven Wilson |------------------------------------------------|')
+        print("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
                 
                 #subirALink
                 # print("Método POST: → ")

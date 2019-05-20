@@ -54,9 +54,22 @@ def addContacts3(nombre, apellido, telefono,diccionarioMaestro):
 
 def listContacts4(diccionarioMaestro):
     """Imprime el diccionario de una forma ordena, este formato no toma en cuenta el uso de un nested dictionary, no usa el contactID"""
+    print('DiccionarioMaestro: → ',diccionarioMaestro)
     print("Contact List → \n")
+    
     for key in diccionarioMaestro:
-        print("Nombre Del Contacto: {} {}, Teléfono: {}".format(diccionarioMaestro[key]['nombre'], diccionarioMaestro[key]['apellido'], diccionarioMaestro[key]['telefono']))
+        if key != 'favorites':
+            print("Nombre Del Contacto: {} {}, Teléfono: {}".format(diccionarioMaestro[key]['nombre'], diccionarioMaestro[key]['apellido'], diccionarioMaestro[key]['telefono']))
+        else:
+            pass
+
+def listFavoritesContacts4punto5(favorites):
+    if bool(favorites) != False:
+        for key in favorites:
+            print("Nombre Del Contacto en favoritos: {} {}, Teléfono: {}".format(favorites[key]['nombre'], favorites[key]['apellido'], favorites[key]['telefono']))
+    else:
+        print('Fvorites is empty.')
+
 
 def removeContact5(nombre,apellido,diccionarioMaestro):
     """Remueve del diccionario el contacto ingresado"""
@@ -231,32 +244,39 @@ def addFavoriteList10(favoriteContactAddition,favorites,diccionarioMaestro):
 
 def removeFromFavorites11(favoriteContactdelete,favorites,diccionarioMaestro):
     """Remueve contactos de favoritos"""
-    listSplit = favoriteContactdelete.split(',')
-    verifiedSplit = []
-    invalidSplit = []
-    iteration1 = 0
-    for items in listSplit:
-        if listSplit[iteration1] in diccionarioMaestro:
-            verifiedSplit.append(listSplit[iteration1])
-        else:
-            invalidSplit.append(listSplit[iteration1])
+    value = diccionarioMaestro.get('favorites')
+    if value != 'None':
+        listSplit = favoriteContactdelete.split(',')
+        verifiedSplit = []
+        invalidSplit = []
+        iteration1 = 0
+        for items in listSplit:
+            if listSplit[iteration1] in diccionarioMaestro:
+                verifiedSplit.append(listSplit[iteration1])
+            else:
+                invalidSplit.append(listSplit[iteration1])
+            
+            iteration1 = iteration1 + 1
+
         
-        iteration1 = iteration1 + 1
+        
+        if len(invalidSplit) != 0:
+            print('Contacto(s) → {} ← parece(n) no existir en la lista de contactos'.format(', '.join(invalidSplit)))
+            print("Porfavor asegúrese de haber escrito el contacto correctamente y que el contacto si exista en el directorio.")
 
-    print(verifiedSplit)
-    
-    if len(invalidSplit) != 0:
-        print('Contacto(s) → {} ← parece(n) no existir en la lista de contactos'.format(', '.join(invalidSplit)))
-        print("Porfavor asegúrese de haber escrito el contacto correctamente y que el contacto si exista en el directorio.")
-
-    elif len(invalidSplit) == 0:
-        iteration2 = 0
-        for n in verifiedSplit:
-            # del diccionarioMaestro['favorites'][verifiedSplit[iteration2]]
-            del diccionarioMaestro['favorites'][iteration2]
-            iteration2 = iteration2 + 1
-        print(', '.join(verifiedSplit))
-
+        elif len(invalidSplit) == 0:
+            iteration2 = 0
+            
+            for n in verifiedSplit:
+                try:
+                    del diccionarioMaestro['favorites'][verifiedSplit[iteration2]]
+                    del favorites[verifiedSplit[iteration2]]
+                    iteration2 = iteration2 + 1
+                except:
+                    print('Tu contacto no pudo ser eliminado por que no se encuentra en "favoritos".')
+            print(', '.join(verifiedSplit))
+        else:
+            print('No tienes lista de favoritos.')
 
 #################################################################################################################################################################################
 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #
@@ -352,56 +372,39 @@ def get14(gid,urlGet,diccionarioMaestro):
     diccionarioMaestro = dataGet
     return diccionarioMaestro
 
+###########################################################################################################################################################################################################################
+#EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS 
+###########################################################################################################################################################################################################################
+#EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS
+###########################################################################################################################################################################################################################
+
+def impresionDirectaALaTerminal15(diccionarioMaestro,favorites):
+    Esthetics1()
+    listContacts4(diccionarioMaestro)
+    listFavoritesContacts4punto5(favorites)
+    Esthetics1()
+
+def exportacionDeLaDataAUnArchivoNuevo16(diccionarioMaestro,favorites,newFileName):
+    #esto va en el main
+    # newFileName = input('Ingrese el nombre del archivo aquí: → ') + input('Ingrese la extensión aquí: ("txt","csv") → ')
+    #esto va en el main
+    with open(newFileName, "w+") as newFile:
+        newFile.write('En Contactos: \n')
+        
+        for key in diccionarioMaestro:
+            if key != 'favorites':
+                line = '=> ' + diccionarioMaestro[key]['nombre'] + ',' + diccionarioMaestro[key]['apellido'] + ',' + diccionarioMaestro[key]['telefono'] + '\n'
+                newFile.write(line)
+        
+        newFile.write('\n')
+        newFile.write('EnFavoritos: \n')
+        for key1 in favorites:
+            
+            line1 = '=> ' + favorites[key1]['nombre'] + ',' + favorites[key1]['apellido'] + '\n'
+            newFile.write(line1)
+            
 
 
-# urlGet=input("Ingrese la url con la desea utilizar el metodo GET:\n  ")
-# gid = input('Inserte Gid: → ')
-# Get(23,urlGet,gid)
-# Post(100)
+def exportacionAUnaURL17():
+    pass
 
-#print(diccionarioMaestro)
-# diccionarioMaestro = {}
-# nombre = 'David'
-# apellido = 'Corzo'
-# telefono = 30177050
-# confirmation = 'si'
-# filename = 'InitialContacts.txt'
-# key = 'davidcorzo'
-# mensaje = 'Hola Que tal.'
-# contactsToSendTo = 'davidcorzo'
-# favoriteContactAddition = 'davidcorzo'
-# favorites = {}
-# favoriteContactdelete = 'davidcorzo'
-# gid = 100
-# urlPost = 'https://reqres.in/api/users'
-# urlGet = 'https://reqres.in/api/users'
-# contactID = produceContactID2(nombre,apellido)
-
-# print('Funcion #1 Esthetics1 :  ',Esthetics1())
-# Esthetics1()
-# print('Funcion #2 produceContactID2 : ',produceContactID2(nombre,apellido))
-# Esthetics1()
-# print('Funcion #3 addContacts3 : ',addContacts3(nombre,apellido,telefono,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #4 listContacts4 : ',listContacts4(diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #5 removeContact5 : ',removeContact5(confirmation,nombre,apellido,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #6 readFile6 : ',readFile6(filename))
-# Esthetics1()
-# # print('Funcion #7 addContactsFromTxt7 : ',addContactsFromTxt7(filename,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #8 callContact8 : ',callContact8(contactID,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #9 msgContacts9 : ',msgContacts9(mensaje, contactsToSendTo,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #10 addFavoriteList10 : ',addFavoriteList10(favoriteContactAddition,favorites,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #11 removeFromFavorites11 : ',removeFromFavorites11(favoriteContactdelete,favorites,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #12 loadFromFile12 : ',loadFromFile12(filename,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #13 post13 : ',post13(gid,urlPost,diccionarioMaestro))
-# Esthetics1()
-# print('Funcion #14 get14 : ',get14(gid,urlGet,diccionarioMaestro))
-# Esthetics1()
