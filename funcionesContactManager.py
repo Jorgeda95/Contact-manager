@@ -294,17 +294,18 @@ def removeFromFavorites11(favoriteContactdelete,favorites,diccionarioMaestro):
     '''
 
 
-
-def loadFromFile12(filename,diccionarioMaestro):
-    """Agrega contactos de un archivo externo al diccionario"""
-    words = readFile6(filename)
-    iteration = 0
-    for line in words:
-        # for words in line:
-        key = produceContactID2(words[iteration][0], words[iteration][1])
-        diccionarioMaestro.update( {key : {"FirstName": words[iteration][0], "LastName": words[iteration][1], "Phone": words[iteration][2]}})
-        iteration = iteration + 1
-    return diccionarioMaestro
+# def loadFromFile12(filename,diccionarioMaestro):
+#     """Agrega contactos de un archivo externo al diccionario"""
+#     words = readFile6(filename)
+    
+#     iteration = 0
+#     for line in words:
+#         # for words in line:
+#         key = produceContactID2(words[iteration][0], words[iteration][1])
+#         diccionarioMaestro.update( {key : {"FirstName": words[iteration][0], "LastName": words[iteration][1], "Phone": words[iteration][2]}})
+#         iteration = iteration + 1
+        
+#     return diccionarioMaestro
     
 # print(loadFromFile(filename,diccionarioMaestro))
 
@@ -339,7 +340,7 @@ def post13(gid,urlPost,diccionarioMaestro):
     """Manda contactos del diccionario a un URL"""
     #urlPost="https://reqres.in/api/users"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
-    urlPost=input("Ingrese la url con la desea utilizar el método POST:\n  ")#Metodo 2 Si desea que la url se ingrese
+    # urlPost=input("Ingrese la url con la desea utilizar el método POST:\n  ")#Metodo 2 Si desea que la url se ingrese
     gid = 0
     params = {'gid':gid}
     #Se ingresa el gid que es el valor
@@ -365,12 +366,23 @@ def get14(gid,urlGet,diccionarioMaestro):
 
     getResponse=requests.get(urlGet, params = params)
     dataGet=getResponse.json()
-    print(getResponse)
+    # print(getResponse)
     #imprime el status code
-    print(dataGet)
+    # print(dataGet)
     #imprime la data
-    diccionarioMaestro = dataGet
+    diccionarioMaestro = dataGet['data']
+    # print('DiccionarioMaestro',diccionarioMaestro)
     return diccionarioMaestro
+
+#https://tinyurl.com/yygujcbg/contacts?
+
+# def directorio(directory,filename):
+#     fpath = os.path.join(directory, filename)
+#     f = open(fpath)
+#     content = f.read()
+#     return content
+
+# print(directorio('C:\\Users\\DAVIDCORZO\\Desktop\\GitHubRepositories\\Contact-manager','InitialContacts.txt'))
 
 ###########################################################################################################################################################################################################################
 #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS #EXPORTACION DE DATOS 
@@ -405,6 +417,5 @@ def exportacionDeLaDataAUnArchivoNuevo16(diccionarioMaestro,favorites,newFileNam
             
 
 
-def exportacionAUnaURL17():
-    pass
+
 

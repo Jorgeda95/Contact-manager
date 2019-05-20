@@ -45,11 +45,13 @@ def main():
                                 diccionarioMaestro = {}
                                 favorites = {}
                                 print("Método GET: → ")
-                                urlGet=input("Ingrese la URL con la desea utilizar el método GET:\n  ")
+                                urlGet=input("Ingrese la URL con la desea utilizar el método GET: → ")
                                 gid = input(str("Ingresa el gid para GET: → "))
-                                get14(gid,urlGet,diccionarioMaestro)
+                                diccionarioMaestro = get14(gid,urlGet,diccionarioMaestro)
                                 print("")
                                 # https://jsonplaceholder.typicode.com/todos/
+                                
+                                #https://tinyurl.com/yygujcbg/contacts?
                                 validacionDeImportacion = 'yes'
                         except:
                                 print('La URL seleccionada no es válida.')
@@ -60,7 +62,7 @@ def main():
                         diccionarioMaestro = {}
                         favorites = {}
                         validacionDeImportacion = 'yes'
-                        print("prueba del tercer método de importacion : ",diccionarioMaestro)
+                        print("prueba del tercer método de importación : ",diccionarioMaestro)
 
 
 
@@ -91,13 +93,13 @@ def main():
                                 valid1 = input('¿Ha ingresado correctamente todos los campos ("si","no"): → ')
                         addContacts3(nombre,apellido,telefono,diccionarioMaestro)
 
-                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        validacionDeMain = input('¿Desea continuar ingrese opción ("si","no")? : → ')
                         Esthetics1()
 
                 elif userChoice == '2':
                         listContacts4(diccionarioMaestro)
                         
-                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        validacionDeMain = input('¿Desea continuar ingrese opción ("si","no")? : → ')
                         Esthetics1()
 
                 elif userChoice == '3':
@@ -114,7 +116,7 @@ def main():
                         
                         Esthetics1()
                         
-                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        validacionDeMain = input('¿Desea continuar ingrese opción ("si","no")? : → ')
                         
                         Esthetics1()
 
@@ -122,7 +124,7 @@ def main():
                         contactID = input('Ingrese el contactID → ')
                         callContact8(contactID, diccionarioMaestro)
 
-                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        validacionDeMain = input('¿Desea continuar ingrese opción ("si","no")? : → ')
                         Esthetics1()
 
                 elif userChoice == '5':
@@ -131,7 +133,7 @@ def main():
                         contactsToSendTo = input('Ingrese contacto(s) al que desea enviar el mensaje (nombre y apellido separado por comas): → ')
                         msgContacts9(mensaje,contactsToSendTo,diccionarioMaestro)
 
-                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        validacionDeMain = input('¿Desea continuar ingrese opción ("si","no")? : → ')
                         Esthetics1()
 
                 elif userChoice == '6':
@@ -139,7 +141,7 @@ def main():
                         favoriteContactAddition = input('¿Qué contacto desea agregar a favoritos? (contactid) → ')
                         addFavoriteList10(favoriteContactAddition,favorites,diccionarioMaestro)
 
-                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        validacionDeMain = input('¿Desea continuar ingrese opción ("si","no")? : → ')
                         Esthetics1()
 
 
@@ -147,13 +149,13 @@ def main():
                         favoriteContactDelete = input('¿Qué contacto desea eliminar de favoritos? (contactid) → ')
                         removeFromFavorites11(favoriteContactDelete,favorites,diccionarioMaestro)
 
-                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        validacionDeMain = input('¿Desea continuar ingrese opción ("si","no")? : → ')
                         Esthetics1()
 
                 elif userChoice == '8':
                         print('Los contactos en favoritos son: → ')
                         listFavoritesContacts4punto5(favorites)
-                        validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
+                        validacionDeMain = input('¿Desea continuar ingrese opción ("si","no")? : → ')
 
                 elif userChoice == '9':
                         break
@@ -163,7 +165,7 @@ def main():
 #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR
 #####################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 
-        exportacion = input('¿Desea exportar los datos modificados? ("si","no")')
+        exportacion = input('¿Desea exportar los datos modificados? ("si","no") → ')
         
         if exportacion == 'si':
                 validacionDeExportacion = 'no'
@@ -194,7 +196,7 @@ def main():
                         
                         
         print("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
-        print('|------------------------------------------------ Final Project - Programación I - UFM - Credits: David Corzo, Jorge Pineda & Steven Wilson |------------------------------------------------|')
+        print('|------------------------------------------------ Final Project - Programación I - UFM - Credits: David Corzo, Jorge Pineda & Steven Wilson ------------------------------------------------|')
         print("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
                 
                 #subirALink
