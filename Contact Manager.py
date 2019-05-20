@@ -45,14 +45,15 @@ def main():
                                 diccionarioMaestro = {}
                                 favorites = {}
                                 print("Método GET: → ")
-                                urlGet=input("Ingrese la url con la desea utilizar el método GET:\n  ")
+                                urlGet=input("Ingrese la URL con la desea utilizar el método GET:\n  ")
                                 gid = input(str("Ingresa el gid para GET: → "))
-                                # get14(gid,urlGet)
-                                
+                                get14(gid,urlGet,diccionarioMaestro)
+                                print("")
                                 # https://jsonplaceholder.typicode.com/todos/
                                 validacionDeImportacion = 'yes'
                         except:
                                 print('La URL seleccionada no es válida.')
+                                print("")
                                 validacionDeImportacion = 'no'
 
                 elif importacionDeDatos == '3':
@@ -167,24 +168,28 @@ def main():
         if exportacion == 'si':
                 validacionDeExportacion = 'no'
                 while validacionDeExportacion == 'no':
+                        print("")
                         print('Método #1: Imprime la información manipulada a la terminal directamente presione "1": → \nMétodo #2: Mete la información manipulada a un archivo que usted nombrará presione "2": → \nMétodo #3: Sube por el método POST la información manipulada a una URL de su elección presione "3"')
+                        print("")
                         metodoDeExportacion = input('¿Qué metodo desea emplear para exportar? ')
                         
                         #exportación a la terminal directamente
                         if metodoDeExportacion == '1':
                                 impresionDirectaALaTerminal15(diccionarioMaestro,favorites)
+                                validacionDeExportacion = input('¿Quiere exportarlo de alguna otra manera? → ')
                         
                         #exportación a un archivo
                         elif metodoDeExportacion == '2':
                                 newFileName = str(input('Ingrese el nombre de su archivo: (No olvide ponerle extensión) → '))
                                 exportacionDeLaDataAUnArchivoNuevo16(diccionarioMaestro,favorites,newFileName)
+                                validacionDeExportacion = input('¿Quiere exportarlo de alguna otra manera? → ')
                         
                         #exportación POST
                         elif metodoDeExportacion == '3':
                                 gid = input('Ingrese su gid: → ')
                                 urlPost = input('Ingrese l URL: → ')
                                 post13(gid,urlPost,diccionarioMaestro)
-                                pass
+                                validacionDeExportacion = input('¿Quiere exportarlo de alguna otra manera? → ')
                         
                         
                         

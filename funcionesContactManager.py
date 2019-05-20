@@ -14,11 +14,11 @@ def Esthetics1():
     print('')
     
 
-def produceContactID2(nombre,apellido):
+def produceContactID2(FirstName,LastName):
     """Crea el contactID, le da retur a key. Utiliza el nombre y apellido con lower"""
-    nombre = nombre.lower()
-    apellido = apellido.lower()
-    key=str(nombre) + str(apellido)
+    FirstName = FirstName.lower()
+    LastName = LastName.lower()
+    key=str(FirstName) + str(LastName)
     return key
 
 def pprint(diccionario):
@@ -44,36 +44,36 @@ def documentacionDeLaFase1():
 
 
 
-def addContacts3(nombre, apellido, telefono,diccionarioMaestro):
+def addContacts3(FirstName, LastName, Phone,diccionarioMaestro):
     """Agrega un nuevo contacto al diccionario con el input del nombre, apellido, telefono"""
-    key = produceContactID2(nombre,apellido)
-    nestedDictionary = {'nombre':nombre,'apellido':apellido,'telefono':telefono}
+    key = produceContactID2(FirstName,LastName)
+    nestedDictionary = {'FirstName':FirstName,'LastName':LastName,'Phone':Phone}
     diccionarioMaestro[key] = nestedDictionary
     return diccionarioMaestro
     
 
 def listContacts4(diccionarioMaestro):
     """Imprime el diccionario de una forma ordena, este formato no toma en cuenta el uso de un nested dictionary, no usa el contactID"""
-    print('DiccionarioMaestro: → ',diccionarioMaestro)
+    # print('DiccionarioMaestro: → ',diccionarioMaestro)
     print("Contact List → \n")
     
     for key in diccionarioMaestro:
         if key != 'favorites':
-            print("Nombre Del Contacto: {} {}, Teléfono: {}".format(diccionarioMaestro[key]['nombre'], diccionarioMaestro[key]['apellido'], diccionarioMaestro[key]['telefono']))
+            print("Nombre Del Contacto: {} {}, Teléfono: {}".format(diccionarioMaestro[key]['FirstName'], diccionarioMaestro[key]['LastName'], diccionarioMaestro[key]['Phone']))
         else:
             pass
 
 def listFavoritesContacts4punto5(favorites):
     if bool(favorites) != False:
         for key in favorites:
-            print("Nombre Del Contacto en favoritos: {} {}, Teléfono: {}".format(favorites[key]['nombre'], favorites[key]['apellido'], favorites[key]['telefono']))
+            print("Nombre Del Contacto en favoritos: {} {}, Teléfono: {}".format(favorites[key]['FirstName'], favorites[key]['LastName'], favorites[key]['Phone']))
     else:
         print('Fvorites is empty.')
 
 
-def removeContact5(nombre,apellido,diccionarioMaestro):
+def removeContact5(FirstName,LastName,diccionarioMaestro):
     """Remueve del diccionario el contacto ingresado"""
-    key = produceContactID2(nombre,apellido)
+    key = produceContactID2(FirstName,LastName)
     try:
         del diccionarioMaestro[key]
         # valid2 = 'yes'
@@ -174,7 +174,7 @@ def callContact8(contactID,diccionarioMaestro):
     """Llama al contacto ingresado"""
     try:
         if  contactID in diccionarioMaestro:
-            contactID = diccionarioMaestro[contactID]['nombre'] + ' ' + diccionarioMaestro[contactID]['apellido'] #se ingresa el ID para que llame a la persona que desea 
+            contactID = diccionarioMaestro[contactID]['FirstName'] + ' ' + diccionarioMaestro[contactID]['LastName'] #se ingresa el ID para que llame a la persona que desea 
             Esthetics1()
             print("Llamando a: {}".format(contactID)) #imprime el nombre de la persona con el texto llamando a
             #print("Teléfono: {}".format)
@@ -302,7 +302,7 @@ def loadFromFile12(filename,diccionarioMaestro):
     for line in words:
         # for words in line:
         key = produceContactID2(words[iteration][0], words[iteration][1])
-        diccionarioMaestro.update( {key : {"nombre": words[iteration][0], "apellido": words[iteration][1], "telefono": words[iteration][2]}})
+        diccionarioMaestro.update( {key : {"FirstName": words[iteration][0], "LastName": words[iteration][1], "Phone": words[iteration][2]}})
         iteration = iteration + 1
     return diccionarioMaestro
     
@@ -393,14 +393,14 @@ def exportacionDeLaDataAUnArchivoNuevo16(diccionarioMaestro,favorites,newFileNam
         
         for key in diccionarioMaestro:
             if key != 'favorites':
-                line = '=> ' + diccionarioMaestro[key]['nombre'] + ',' + diccionarioMaestro[key]['apellido'] + ',' + diccionarioMaestro[key]['telefono'] + '\n'
+                line = '=> ' + diccionarioMaestro[key]['FirstName'] + ',' + diccionarioMaestro[key]['LastName'] + ',' + diccionarioMaestro[key]['Phone'] + '\n'
                 newFile.write(line)
         
         newFile.write('\n')
         newFile.write('EnFavoritos: \n')
         for key1 in favorites:
             
-            line1 = '=> ' + favorites[key1]['nombre'] + ',' + favorites[key1]['apellido'] + '\n'
+            line1 = '=> ' + favorites[key1]['FirstName'] + ',' + favorites[key1]['LastName'] + '\n'
             newFile.write(line1)
             
 

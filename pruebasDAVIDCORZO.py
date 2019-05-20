@@ -14,7 +14,7 @@ diccionarioMaestro = {}
 
 def get14(gid,urlGet,diccionarioMaestro):
     """Recibe contactos de un URL y los ingresa al diccionario"""
-    #urlGet="http://demo7862839.mockable.io/contacts?gid=100"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
+    
 
     
     params = {'gid':gid}
