@@ -413,6 +413,40 @@ def exportacionDeLaDataAUnArchivoNuevo16(diccionarioMaestro,favorites,newFileNam
             
             line1 = '=> ' + favorites[key1]['FirstName'] + ',' + favorites[key1]['LastName'] + '\n'
             newFile.write(line1)
+        
+def loadFromFile(directory,filename,diccionarioMaestro):
+    """Agrega contactos de un archivo externo al diccionario"""
+    
+    fpath = os.path.join(directory, filename)
+    f = open(fpath)
+    words = f.read()
+    try:
+        fpath = True
+        words1 = words.splitlines()
+        
+        fineWords = []
+        iteration1 = 0
+        for items in words1:
+            if words1[iteration1] == '':
+                pass
+            else:    
+                fineWords.append(words1[iteration1].split(','))
+            
+            iteration1 = iteration1 + 1
+
+        iteration = 0
+        for line in fineWords:
+            # for words in line:
+            key = produceContactID2(fineWords[iteration][0], fineWords[iteration][1])
+            
+            diccionarioMaestro.update( {key : {"FirstName": fineWords[iteration][0], "LastName": fineWords[iteration][1], "Phone": fineWords[iteration][2]}})
+            iteration = iteration + 1
+    except:
+        print("No existe ese directorio")
+    
+    
+        
+    return diccionarioMaestro
             
 
 
@@ -424,7 +458,7 @@ def exportacionDeLaDataAUnArchivoNuevo16(diccionarioMaestro,favorites,newFileNam
 
 def main():
         print('')
-        print('     Los métodos de importación de datos son: → \n          → Por medio de un archivo que existe localmente presione "1" \n          → Por medio de un link a un sitio web .json presione "2" \n          → Por medio de una base de datos que yo crearé en este programa "3"')    
+        print('     Los métodos de importación de datos son: → \n          → Por medio de un archivo que existe localmente presione "1" \n          → Por medio de un link a un sitio web .json presione "2" \n          → Por medio de una base de datos que yo crearé en este programa "3" \n          → Por medio de un archivo de texto que no está en el mismo directorio "4"')    
         print('')
 
 
@@ -486,6 +520,19 @@ def main():
                         favorites = {}
                         validacionDeImportacion = 'yes'
                         print("prueba del tercer método de importación : ",diccionarioMaestro)
+
+                elif importacionDeDatos == '4':
+                        favorites = {}
+                        diccionarioMaestro = {}
+                        directory = input('Directory: → ')
+                        filename = input('Ingrese el nombre del archivo: → ')
+                        diccionarioMaestro = loadFromFile(directory,filename,diccionarioMaestro)
+                        validacionDeImportacion = 'yes'
+                        
+
+
+
+
 
 
 
@@ -591,8 +638,8 @@ def main():
         exportacion = input('¿Desea exportar los datos modificados? ("si","no") → ')
         
         if exportacion == 'si':
-                validacionDeExportacion = 'no'
-                while validacionDeExportacion == 'no':
+                validacionDeExportacion = 'si'
+                while validacionDeExportacion == 'si':
                         print("")
                         print('Método #1: Imprime la información manipulada a la terminal directamente presione "1": → \nMétodo #2: Mete la información manipulada a un archivo que usted nombrará presione "2": → \nMétodo #3: Sube por el método POST la información manipulada a una URL de su elección presione "3"')
                         print("")
@@ -620,7 +667,7 @@ def main():
                         
                         
         print("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
-        print('|------------------------------------------------ Final Project - Programación I - UFM - Credits: David Corzo, Jorge Pineda & Steven Wilson ------------------------------------------------|')
+        print('|------------------------------------------------ Final Project - Programación I - UFM - Credits: David Corzo, Jorge Pineda & Steven Wilson -------------------------------------------------|')
         print("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|")
                 
                 #subirALink
