@@ -349,16 +349,14 @@ def post13(gid,urlPost,diccionarioMaestro):
     payload=diccionarioMaestro
     #la información (data) para subir
 
-    postResponse=requests.post(urlPost, params = params, json=payload)
-    dataPost=postResponse.json()
+    postResponse=requests.post(urlPost, params = params, json={'data':payload})
     print(postResponse)
-    #imprime el status code
-    print(dataPost)
-    #imprime la data 
+    #imprime status code 
+    print("Este es la url para comprobar el método POST:\n"+urlPost) 
 
 def get14(gid,urlGet,diccionarioMaestro):
     """Recibe contactos de un URL y los ingresa al diccionario"""
-    #urlGet="http://demo7862839.mockable.io/contacts?gid=100"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
+    #urlGet="https://tinyurl.com/yygujcbg/contacts?"#Metodo 1 Si desea que la url este ingresada pero solo se desea cambiar una vez
 
     
     params = {'gid':gid}

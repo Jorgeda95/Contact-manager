@@ -188,8 +188,9 @@ def main():
                         
                         #exportación POST
                         elif metodoDeExportacion == '3':
+                                urlP = input("Ingrese la URL: → ")
                                 gid = input('Ingrese su gid: → ')
-                                urlPost = input('Ingrese l URL: → ')
+                                urlPost=(urlP+gid)
                                 post13(gid,urlPost,diccionarioMaestro)
                                 validacionDeExportacion = input('¿Quiere exportarlo de alguna otra manera? → ')
                         
