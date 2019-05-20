@@ -34,13 +34,13 @@ def pprint(diccionario):
 #################################################################################################################################################################################
 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #FASE 1 #
 #################################################################################################################################################################################
-def documentacionDeLaFase1():
-    '''
-    Fase 1:
-    1. addContact: Nombre, Apellido y Telefono 
-    2. listContacts:  “pretty”
-    3. removeContact:  “Nombre Apellido” del contacto y lo elimine 
-    '''
+# def documentacionDeLaFase1():
+#     '''
+#     Fase 1:
+#     1. addContact: Nombre, Apellido y Telefono 
+#     2. listContacts:  “pretty”
+#     3. removeContact:  “Nombre Apellido” del contacto y lo elimine 
+#     '''
 
 
 
@@ -87,15 +87,15 @@ def removeContact5(FirstName,LastName,diccionarioMaestro):
 #################################################################################################################################################################################
 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #FASE 2 #
 #################################################################################################################################################################################
-def documentacionDeLaFase2():
-    """ Fase 2: 
-    1. Leer/cargar (automaticamente) los contactos de un archivo llamado InitialContacts.txt, si y solo si el archivo existe en el mismo directorio que su programa.py
-    2. Agregarlos a la “lista” que anteriormente estaba vacia , es decir ahora su lista ya va a estar pre-inicializada
-    3. Obviamente estos contactos deben ser ordenados dentro de la “lista” de contactos
+# def documentacionDeLaFase2():
+#     """ Fase 2: 
+#     1. Leer/cargar (automaticamente) los contactos de un archivo llamado InitialContacts.txt, si y solo si el archivo existe en el mismo directorio que su programa.py
+#     2. Agregarlos a la “lista” que anteriormente estaba vacia , es decir ahora su lista ya va a estar pre-inicializada
+#     3. Obviamente estos contactos deben ser ordenados dentro de la “lista” de contactos
 
-    Recuerde que los contactos se clasifican y se ordenan por apellido, si el apellido no esta
-    presente el nombre dictara en que “Letra” alfabetica se pondra el contacto. Estos contactos
-    estaran en el archivo de una manera desordenada."""
+#     Recuerde que los contactos se clasifican y se ordenan por apellido, si el apellido no esta
+#     presente el nombre dictara en que “Letra” alfabetica se pondra el contacto. Estos contactos
+#     estaran en el archivo de una manera desordenada."""
 
 
 
@@ -123,50 +123,51 @@ def readFile6(filename):
 
 # print(readFile(filename))
 
-# def addContactsFromTxt7(filename,diccionarioMaestro):
-#     lines=readFile6(filename)
-#     # lines.strip("-")
-#     for line in lines:
-#         words = line.split(",")
-#         newContactID = words[0]+words[1]
+def addContactsFromTxt7(filename,diccionarioMaestro):
+    lines=readFile6(filename)
+    # lines.strip("-")
+    for line in lines:
+        words = line.split(",")
+        newContactID = words[0]+words[1]
 
-#         diccionarioMaestro.update( {newContactID : {"nombre": words[0], "apellido": words[1], "telefono": words[2]}})
-#     return diccionarioMaestro
+        diccionarioMaestro.update( {newContactID : {"nombre": words[0], "apellido": words[1], "telefono": words[2]}})
+    return diccionarioMaestro
 
 #################################################################################################################################################################################
 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #
 #################################################################################################################################################################################
 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #FASE 3 #
 #################################################################################################################################################################################
-#def documentacionDeLaFase3():
-    ''' 
-    Fase 3:
-    ContactID: cada contacto debe estar guardado mediante un contactID (puede ser un numer
-    correlativo o algo mas elaborado)
 
-    1. callContact({contactID}): que recibiendo un ID de contacto pueda “llamar” a un contacto, 
-    para llamar a un contacto basta con desplegar por 60 segundos o hasta que el usuario presione la letra “C”
+# def documentacionDeLaFase3():
+#     ''' 
+#     Fase 3:
+#     ContactID: cada contacto debe estar guardado mediante un contactID (puede ser un numer
+#     correlativo o algo mas elaborado)
 
-        “Llamando a: Antonio Melgar
-        Telefono: 777-777-777 ”
+#     1. callContact({contactID}): que recibiendo un ID de contacto pueda “llamar” a un contacto, 
+#     para llamar a un contacto basta con desplegar por 60 segundos o hasta que el usuario presione la letra “C”
 
-    2. msgContacts ({contactIDs}[]) : que reciba una lista de 1 o mas contact IDs (Nombre y Apellido) y que reciba un texto que 
-    represente el mensaje que se desea enviar “To: Juan Guzman (55-555-555),Pablo Alvarez (33-333-333),Luis Fernandez (22-222-222)
-    Msg: Hola solo queria saber si vendran al laboratorio" 
+#         “Llamando a: Antonio Melgar
+#         Telefono: 777-777-777 ”
 
-    3. addToFavorite({contactID}): este metodo debe de agregar el contacto que reciba a una nueva lista de favoritos. 
-    (esta es una nueva lista con nuevos contactID)
+#     2. msgContacts ({contactIDs}[]) : que reciba una lista de 1 o mas contact IDs (Nombre y Apellido) y que reciba un texto que 
+#     represente el mensaje que se desea enviar “To: Juan Guzman (55-555-555),Pablo Alvarez (33-333-333),Luis Fernandez (22-222-222)
+#     Msg: Hola solo queria saber si vendran al laboratorio" 
 
-    4. getFavoriteList() : metodo que despliega esta lista de contactos de una manera “pretty”
+#     3. addToFavorite({contactID}): este metodo debe de agregar el contacto que reciba a una nueva lista de favoritos. 
+#     (esta es una nueva lista con nuevos contactID)
 
-    5. removeFromFavorite({contactIDinFavorite}): que recibiendo el apellido y el nombre del contacto elimine ese contacto de la lista.
-    Todos estos funciones deberan pertenecer a la fase 3 pero debera mostrar un sub-menu que
+#     4. getFavoriteList() : metodo que despliega esta lista de contactos de una manera “pretty”
 
-    muestre todas estas opciones, y la manera de interactuar con los contactos es de manera list &
-    scroll. Es decir los contactos deben mostrarse :
-    1. Haciendo un scroll y cada contacto debera tener un correlativo (1. Juan Guzman,555555 )
-    2. Solo mostrando la lista con los contactos y un correlativo y elegir el numero de correlativ
-    '''
+#     5. removeFromFavorite({contactIDinFavorite}): que recibiendo el apellido y el nombre del contacto elimine ese contacto de la lista.
+
+
+#     muestre todas estas opciones, y la manera de interactuar con los contactos es de manera list &
+#     scroll. Es decir los contactos deben mostrarse :
+#     1. Haciendo un scroll y cada contacto debera tener un correlativo (1. Juan Guzman,555555 )
+#     2. Solo mostrando la lista con los contactos y un correlativo y elegir el numero de correlativ
+#     '''
 
 
 
@@ -283,29 +284,29 @@ def removeFromFavorites11(favoriteContactdelete,favorites,diccionarioMaestro):
 #################################################################################################################################################################################
 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #FASE 4 #
 #################################################################################################################################################################################
-#def documentacionDeLaFase4():
-    '''
-    Fase 4:
-    loadFromFile(externalFile), que reciba el nombre de un
-    archivo del cual se leerán los contactos, su método debe ser failsafe, es decir si el archivo no
-    existe no ejecutar nada y devolver un “error”
-    El programa (CLI) debe pedir el full path del archivo “~/Downloads/contacts.txt”
-    .txt, .csv, .lists, .contacts
-    '''
+# def documentacionDeLaFase4():
+#     '''
+#     Fase 4:
+#     loadFromFile(externalFile), que reciba el nombre de un
+#     archivo del cual se leerán los contactos, su método debe ser failsafe, es decir si el archivo no
+#     existe no ejecutar nada y devolver un “error”
+#     El programa (CLI) debe pedir el full path del archivo “~/Downloads/contacts.txt”
+#     .txt, .csv, .lists, .contacts
+#     '''
 
 
-# def loadFromFile12(filename,diccionarioMaestro):
-#     """Agrega contactos de un archivo externo al diccionario"""
-#     words = readFile6(filename)
+def loadFromFile12(filename,diccionarioMaestro):
+    """Agrega contactos de un archivo externo al diccionario"""
+    words = readFile6(filename)
     
-#     iteration = 0
-#     for line in words:
-#         # for words in line:
-#         key = produceContactID2(words[iteration][0], words[iteration][1])
-#         diccionarioMaestro.update( {key : {"FirstName": words[iteration][0], "LastName": words[iteration][1], "Phone": words[iteration][2]}})
-#         iteration = iteration + 1
+    iteration = 0
+    for line in words:
+        # for words in line:
+        key = produceContactID2(words[iteration][0], words[iteration][1])
+        diccionarioMaestro.update( {key : {"FirstName": words[iteration][0], "LastName": words[iteration][1], "Phone": words[iteration][2]}})
+        iteration = iteration + 1
         
-#     return diccionarioMaestro
+    return diccionarioMaestro
     
 # print(loadFromFile(filename,diccionarioMaestro))
 
@@ -315,24 +316,24 @@ def removeFromFavorites11(favoriteContactdelete,favorites,diccionarioMaestro):
 #################################################################################################################################################################################
 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #FASE 6 #
 #################################################################################################################################################################################
-#def documentacionDeLaFase6():
-    '''
-    Fase 6
-    Save to Web via HTTP methods, en lo visto en clase aprendimos GET y POST.
-    El dia del proyecto se le proveera con una URL (por ejemplo: http://marcosapi.com/) a la cual
-    usted debera: crear un contact list y obtener un contact list
-    POST:
-    - http://demo7862839.mockable.io/contacts?gid=100 usando el metodo POST debera
-    exportar y crear su “current” contact list mediante un payload (data) que contenga su
-    contact list en forma dictionary (JSON, ver ejemplo abajo)
-    GET:
-    - http://demo7862839.mockable.io/contacts?gid=100
-    - gid=100 es el request parameter (query param) y es igual a 100, por que ese es mi fake
-    gid.
-    En ambos casos puede usar gid como query parameter o proveer un custom request header
-    gid: HTTP
-    _ID
-    '''
+# def documentacionDeLaFase6():
+#     '''
+#     Fase 6
+#     Save to Web via HTTP methods, en lo visto en clase aprendimos GET y POST.
+#     El dia del proyecto se le proveera con una URL (por ejemplo: http://marcosapi.com/) a la cual
+#     usted debera: crear un contact list y obtener un contact list
+#     POST:
+#     - http://demo7862839.mockable.io/contacts?gid=100 usando el metodo POST debera
+#     exportar y crear su “current” contact list mediante un payload (data) que contenga su
+#     contact list en forma dictionary (JSON, ver ejemplo abajo)
+#     GET:
+#     - http://demo7862839.mockable.io/contacts?gid=100
+#     - gid=100 es el request parameter (query param) y es igual a 100, por que ese es mi fake
+#     gid.
+#     En ambos casos puede usar gid como query parameter o proveer un custom request header
+#     gid: HTTP
+#     _ID
+#     '''
 
 
 

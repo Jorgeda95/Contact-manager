@@ -1,4 +1,5 @@
 import sys, os
+from funcionesContactManager import *
 
 # from funcionesContactManager import *
 # import requests
@@ -61,15 +62,14 @@ diccionarioMaestro = {}
 #         compatibleDictionary[iteration]
 
 
-print('''Ingrese una opción: 
-Para abrir un archivo en otro directorio "dir" 
-Para abrir un archivo en este mismo directorio "file":''')
-WhatToUse = input(' → ')
-if WhatToUse == 'dir':
-    directory = input('Directory: → ')
+# print('''Ingrese una opción: 
+# Para abrir un archivo en otro directorio "dir" ''')
+# WhatToUse = input(' → ')
+
+directory = input('Directory: → ')
 
 filename = input('Ingrese el nombre del archivo: → ')
-def loadFromFilePruebas(WhatToUse,directory,filename,diccionarioMaestro):
+def loadFromFilePruebas(directory,filename,diccionarioMaestro):
     """Agrega contactos de un archivo externo al diccionario"""
     
 
@@ -78,21 +78,33 @@ def loadFromFilePruebas(WhatToUse,directory,filename,diccionarioMaestro):
     words = f.read()
     try:
         fpath = True
-        print(words)
-        words = words.split(',')
-        fineWords = words.splitlines()
-        print(fineWords)
+        words1 = words.splitlines()
+        
+        fineWords = []
+        iteration1 = 0
+        for items in words1:
+            if words1[iteration1] == '':
+                pass
+            else:    
+                fineWords.append(words1[iteration1].split(','))
+            
+            iteration1 = iteration1 + 1
+
+        iteration = 0
+        for line in fineWords:
+            # for words in line:
+            key = produceContactID2(fineWords[iteration][0], fineWords[iteration][1])
+            
+            diccionarioMaestro.update( {key : {"FirstName": fineWords[iteration][0], "LastName": fineWords[iteration][1], "Phone": fineWords[iteration][2]}})
+            iteration = iteration + 1
     except:
         print("No existe ese directorio")
     
-    iteration = 0
-    for line in words:
-        # for words in line:
-        key = produceContactID2(fineWords[iteration][0], fineWords[iteration][1])
-        print(key)
-        diccionarioMaestro.update( {key : {"FirstName": fineWords[iteration][0], "LastName": fineWords[iteration][1], "Phone": fineWords[iteration][2]}})
-        iteration = iteration + 1
+    
         
     return diccionarioMaestro
 
-print(loadFromFilePruebas(WhatToUse,directory,filename,diccionarioMaestro))
+print(loadFromFilePruebas(directory,filename,diccionarioMaestro))
+
+
+# C:\\Users\\DAVIDCORZO\\Desktop\\GitHubRepositories\\Contact-manager
