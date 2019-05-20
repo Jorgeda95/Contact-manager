@@ -154,6 +154,9 @@ def main():
                         listFavoritesContacts4punto5(favorites)
                         validacionDeMain = input('¿Desea seguir usando el menú ("si","no")? : → ')
 
+                elif userChoice == '9':
+                        break
+
 
 #####################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR METODOS #EXPORTACION DE DATOS POR
